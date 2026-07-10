@@ -283,8 +283,10 @@ h1,h2,h3,.serif{font-family:'Montserrat','Montserrat Fallback',sans-serif;font-w
 .cta.ghost:hover{border-color:var(--gold-dim);background:rgba(236,212,136,.04);transform:none}
 /* in-page CTA nudge (po sekciách — konverzný bod) */
 .cta-nudge{display:flex;flex-direction:column;align-items:center;gap:13px;text-align:center;margin-top:46px}
-.cta-note{font-size:12.5px;color:var(--muted-2);letter-spacing:.03em;display:inline-flex;align-items:center;gap:8px}
-.cta-note::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold-dim);flex:0 0 auto}
+.cta-note{font-size:12.5px;color:var(--muted-2);letter-spacing:.03em;text-align:center;max-width:34em;line-height:1.5}
+/* bodka je inline na začiatku textu (nie flex-súrodenec) → pri zalomení na 2 riadky
+   drží s prvým riadkom a text ostáva centrovaný (nevyosí sa vľavo) */
+.cta-note::before{content:"";display:inline-block;vertical-align:middle;width:5px;height:5px;border-radius:50%;background:var(--gold-dim);margin-right:9px;position:relative;top:-1px}
 .cta-break{padding:0}
 
 /* rating badge */
@@ -919,8 +921,9 @@ section.block{padding:70px 0}
 .consent{display:flex;gap:11px;align-items:flex-start;font-size:12.5px;color:var(--muted);cursor:pointer;margin-top:2px}
 .consent input{margin-top:2px;accent-color:var(--gold);width:17px;height:17px;flex:0 0 auto;cursor:pointer}
 .consent.bad{color:var(--err)}
-.reassure{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted-2);margin-top:14px;justify-content:center}
-.reassure svg{color:var(--gold-dim)}
+.reassure{font-size:12.5px;color:var(--muted-2);margin-top:14px;text-align:center;line-height:1.5}
+/* ikona inline pred textom → pri zalomení nezostane vyosená vľavo */
+.reassure svg{color:var(--gold-dim);display:inline-block;vertical-align:middle;margin-right:8px;position:relative;top:-1px}
 /* quiz result */
 .qdone{display:none;text-align:center;animation:fade .6s var(--ease) both}
 .qdone.on{display:block}
