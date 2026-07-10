@@ -109,7 +109,7 @@ window.OS_LANG=(function(){
       '<div class="cb-in">'+
         (window.OS_LANG==='en'
           ?'<p>We use cookies to measure traffic and ad performance (Google&nbsp;Analytics, Meta&nbsp;Pixel). '+
-           'Click Decline to turn them off at any time. '+
+           'Click Decline to opt out — you can change your choice at any time. '+
            '<a href="https://orostone.sk/ochrana-sukromia" target="_blank" rel="noopener">Privacy policy</a></p>'+
            '<div class="cb-btns">'+
              '<button type="button" class="cb-no">Decline</button>'+

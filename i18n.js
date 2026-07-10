@@ -41,6 +41,7 @@ var EN=[
   ['t','.hu-item',['Durable surface','No sealing needed']],
   ['a','.material-card','aria-label','Super White Extra — get a price estimate'],
   ['a','.mc-thumb','alt','Super White Extra — marble-look sintered stone decor'],
+  ['h','.mc-sub','Premium decor'],
   ['t','.mc-link','Get a price '],
   ['a','.hero-bg','alt','Kitchen island and splashback in Bianco Statuario sintered stone'],
 
@@ -52,7 +53,7 @@ var EN=[
     'Real kitchens we’ve delivered.',
     'No obligation, tailored to your project.',
     'No obligation, at your home.',
-    'Sintered stone allows hidden induction built in beneath the surface.',
+    'Sintered stone allows an induction hob to be hidden beneath the surface.',
     'See the stone in person in Bošany.']],
 
   /* ===== index: Realizácie ===== */
@@ -99,7 +100,7 @@ var EN=[
   /* ===== index: Ako vzniká ===== */
   ['h','.madeof .section-head .eyebrow','How it’s made'],
   ['h','.madeof .section-head h2','Nature, condensed into <span class="hl">12 millimetres</span>'],
-  ['h','.madeof .section-head p','Sintered stone isn’t a synthetic material. It’s a natural mineral material — created by a process that mimics how stone forms in nature, only many times faster. That’s why the market also calls it technical or engineered stone, even though it contains no resins or plastics.'],
+  ['h','.madeof .section-head p','Sintered stone isn’t a synthetic material. It’s a natural mineral material — created by a process that mimics how stone forms in nature, only many times faster. That’s why the market also calls it technical or ceramic stone, even though it contains no resins or plastics.'],
   ['a','.slab','aria-label','Rotating sintered stone slab, 1600 × 3200 × 12 mm'],
   ['h','.msticker b',['Minerals','Pressure','Heat','Slab']],
   ['h','.slab-dim','<b>1600 × 3200 × 12 mm</b> — one large-format slab'],
@@ -146,7 +147,7 @@ var EN=[
     'It depends on the decor, the amount of material and the design of your project — so instead of one list price, we prepare a custom estimate. It takes 60 seconds in the configurator, and within 24 hours you’ll have it in your inbox, with no obligation.',
     'The estimate gives you a realistic range to decide with. You’ll receive an exact quote after a free on-site measurement — item by item, including cut-outs and edges, so you know in advance what you’re paying for.',
     'We don’t install directly. We supply the material, while fabrication and fitting are handled by experienced stonemasons we’ve worked with for years and who know this material well. The craftsmanship is what determines the result — so we don’t leave it to chance.',
-    'Engineered (technical) stone is held together by resins. Sintered stone is made purely of minerals, pressure and heat — no resins, no plastics. In practice this means higher heat and UV resistance and a surface that never needs sealing. Dekton is a brand name for the same type of material from another manufacturer.',
+    'Engineered stone (quartz) is held together by resins. Sintered stone is made purely of minerals, pressure and heat — no resins, no plastics. In practice this means higher heat and UV resistance and a surface that never needs sealing. Dekton is a brand name for the same type of material from another manufacturer.',
     'You can place a hot pot or pan directly on the worktop. The surface is highly scratch-resistant — everyday use won’t damage it. We recommend a cutting board more for the sake of your knives than the worktop.',
     'In our showroom in a Renaissance manor in Bošany — you can see and touch the decors and full-size slabs in person.']],
 
@@ -154,7 +155,7 @@ var EN=[
   ['h','.apps-head .eyebrow','Versatile applications'],
   ['h','.apps-head h2','One stone. The whole kitchen.'],
   ['h','.apps-head p','The same sintered stone handles the entire space — worktop, splashback, island and its side panels.'],
-  ['a','.apps-bg','alt','Luxury kitchen in Taj Mahal sintered stone'],
+  ['a','.apps-bg','alt','Kitchen in Taj Mahal sintered stone — worktop, island and splashback'],
   ['a','.corner-img','alt',[
     'Kitchen island in sintered stone',
     'Kitchen worktop and splashback in sintered stone']],
@@ -176,7 +177,7 @@ var EN=[
     'Interior with a sintered stone worktop by Orostone']],
   ['h','.tmc blockquote',[
     '“We were looking for something special for our new kitchen, and Roman Travertine from Orostone was love at first sight. The whole process — from choosing the decor through measurement to installation — went completely smoothly.”',
-    '“We were choosing stone for a modern kitchen and Arden Gold won us over with its texture and warm tone. We reached out to Orostone on a recommendation and haven’t regretted a single second.”',
+    '“We were choosing stone for a modern kitchen and Arden Gold won us over with its texture and warm tone. We reached out to Orostone on a recommendation and haven’t regretted it for a second.”',
     '“The Orostone team was very professional — they explained everything in detail and gave us honest advice. Installation was quick and the result exceeded our expectations. Highly recommended!”',
     '“The surface looks luxurious, is easy to look after and fits our interior perfectly. Thank you for a job well done.”']],
   ['h','.tmc .who b',['Lucia & Tomáš','Marek','Petra','Ján']],
@@ -232,7 +233,7 @@ var EN=[
   ['a','#qclose','aria-label','Close'],
   ['h','.qstep[data-step="1"] .q-label','Your project'],
   ['h','.qstep[data-step="1"] .q','What can we help you with?'],
-  ['h','.qstep[data-step="1"] .q-sub','Select everything that applies — combinations are welcome. You can always add more later.'],
+  ['h','.qstep[data-step="1"] .q-sub','Select all that apply — combinations are welcome. You can always add more later.'],
   ['a','.opts[data-key="aplikacia"]','aria-label','What can we help you with'],
   ['h','.opts[data-key="aplikacia"] .opt .tx b',[
     'Kitchen worktop','Kitchen island','Kitchen splashback','Bathroom or another space']],
@@ -252,13 +253,13 @@ var EN=[
     'Calacatta Top — white marble','Appennino — dramatic marble','Taj Mahal — cream marble',
     'Roman Travertine — warm travertine','Astrana Grey — grey stone','Givenchy Gold — warm gold',
     'Wild Forest — bold dark','Gothic Gold — dark gold','Nero Margiua — black marble']],
-  ['h','.decor.wide .tx b','I can’t decide — advise me'],
+  ['h','.decor.wide .tx b','I can’t decide — help me choose'],
   ['h','.decor.wide .tx small','We’ll recommend decors to suit your kitchen'],
   ['h','.qstep[data-step="3"] .q-label','Timing'],
   ['h','.qstep[data-step="3"] .q','When are you planning it?'],
   ['h','.qstep[data-step="3"] .q-sub','This tells us how quickly we should get back to you.'],
   ['h','.opts[data-key="termin"] .opt .tx b',['As soon as possible','In 1–3 months','Just looking for now']],
-  ['h','.opts[data-key="termin"] .opt .tx small',['Within 1 month','It’s in the plan','I want a price estimate']],
+  ['h','.opts[data-key="termin"] .opt .tx small',['Within 1 month','It’s in the works','I want a price estimate']],
   ['h','.qstep[data-step="4"] .q-label','Last step'],
   ['h','.qstep[data-step="4"] .q','Where should we send your price?'],
   ['h','.qstep[data-step="4"] .q-sub','We’ll prepare a <b style="color:var(--light);font-weight:600">custom price estimate</b> and get back to you with no obligation — usually within 24 hours.'],
@@ -281,7 +282,7 @@ var EN=[
     'You can also see the slabs in person at our showroom in Bošany.']],
   ['t','#qdone .reassure',' In a hurry? Call '],
   ['h','.sample-card b','Want to see and touch a decor in person?'],
-  ['h','.sample-card p','We’ll send a real decor sample to your home — for <span class="price">€5.90 with delivery</span> anywhere in Slovakia.'],
+  ['h','.sample-card p','We’ll send a real decor sample to your home — for <span class="price">€5.90 including delivery</span> anywhere in Slovakia.'],
   ['h','#sampleBtn','Order a sample · €5.90'],
   ['h','#qdone .visit p','While we prepare your price, take a look at our decors and completed projects.'],
   ['t','#qdone .visit .cta','Visit orostone.sk '],
@@ -395,7 +396,7 @@ function cookieBar(lang){
   var p=el.querySelector('p'),yes=el.querySelector('.cb-yes'),no=el.querySelector('.cb-no');
   if(!p||!yes||!no)return;
   if(lang==='en'){
-    p.innerHTML='We use cookies to measure traffic and ad performance (Google Analytics, Meta Pixel). Click Decline to turn them off at any time. <a href="https://orostone.sk/ochrana-sukromia" target="_blank" rel="noopener">Privacy policy</a>';
+    p.innerHTML='We use cookies to measure traffic and ad performance (Google Analytics, Meta Pixel). Click Decline to opt out — you can change your choice at any time. <a href="https://orostone.sk/ochrana-sukromia" target="_blank" rel="noopener">Privacy policy</a>';
     no.textContent='Decline';yes.textContent='OK';
   }else{
     p.innerHTML='Používame cookies na meranie návštevnosti a výkonu reklám (Google Analytics, Meta Pixel). Kliknutím na Odmietnuť ich kedykoľvek vypnete. <a href="https://orostone.sk/ochrana-sukromia" target="_blank" rel="noopener">Ochrana osobných údajov</a>';
