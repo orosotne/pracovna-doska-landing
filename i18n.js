@@ -32,9 +32,9 @@ var EN=[
   ['h','.hero-copy .eyebrow','Sintered stone worktops'],
   ['h','.hero h1','Get a custom price estimate for your worktop <em style="font-style:italic;white-space:nowrap">today.</em>'],
   ['h','.hero-copy p.lead',[
-    '<strong>It takes 60 seconds and 4 short questions.</strong>',
-    'Usually within 24 hours, we’ll prepare a no-obligation price estimate, recommend a suitable decor and advise you on the best solution for your kitchen.',
-    'We work with sintered stone (also known as technical or ceramic stone) — a material that resists heat, stains and scratches, and never needs sealing.'
+    '<strong>Four short questions — done in 60 seconds.</strong>',
+    'We’ll usually get back to you within 24 hours with a no-obligation price estimate, a decor recommendation and advice on what will work best in your kitchen.',
+    'We work with sintered stone — sometimes sold as porcelain or ceramic stone — a material that resists heat, stains and scratches, and never needs sealing.'
   ]],
   ['t','button.cta[data-open-quiz]:not(.lb-cta)','Get my price estimate '],
   ['h','.rating > span:not(.stars)','<b>5.0</b> <small>· 5 reviews on Google</small>'],
@@ -51,9 +51,9 @@ var EN=[
     'Cook directly on the stone','Showroom in a manor house']],
   ['h','.usp-item p',[
     'Real kitchens we’ve delivered.',
-    'No obligation, tailored to your project.',
-    'No obligation, at your home.',
-    'Sintered stone allows an induction hob to be hidden beneath the surface.',
+    'No obligation — tailored to your project.',
+    'No obligation — we come to you.',
+    'Truly heat-resistant — an invisible induction hob can be integrated beneath the surface.',
     'See the stone in person in Bošany.']],
 
   /* ===== index: Realizácie ===== */
@@ -82,26 +82,26 @@ var EN=[
     'Worktop and splashback with navy cabinets — Yabo White decor',
     'Oak kitchen — Super White Extra decor']],
   ['h','.gal-trust span',[
-    'Fabrication and installation by experienced stonemasons',
+    'Fabricated and fitted by experienced stonemasons',
     'Showroom in a manor house in Bošany']],
 
   /* ===== index: Výhody ===== */
   ['h','.benefits-section .section-head .eyebrow','Why sintered stone'],
   ['h','.benefits-section .section-head h2','Durability you’ll appreciate every day'],
-  ['h','.benefits-section .section-head p','Technical properties that mean less worry in everyday use — and a beautiful result for decades.'],
+  ['h','.benefits-section .section-head p','A material that takes the worry out of everyday use — and keeps its looks for decades.'],
   ['h','.bcard b',['Non-porous surface','Scratch-resistant','Heat-resistant','No sealing needed','Easy to clean']],
   ['h','.bcard p',[
-    'Wine, oil and coffee stay on the surface — stains don’t soak into the slab.',
-    'Handles even careless cutting right on the worktop — no permanent marks.',
-    'Put a hot pot or pan straight on the surface, no need to worry.',
-    'The surface never needs sealing — no extra upkeep.',
-    'Just wipe it down with a regular cleaner. Less work, more peace of mind.']],
+    'Wine, oil and coffee sit on the surface — nothing soaks into the stone.',
+    'Highly scratch-resistant in everyday use — even the odd careless cut is unlikely to leave a mark.',
+    'Hot pots and pans can go straight onto the stone — no trivet required.',
+    'The surface never needs sealing — one less thing to maintain.',
+    'A quick wipe with an ordinary kitchen cleaner is all it takes.']],
   ['a','.benefits-worktop img','alt','Sintered stone worktop with LED underlighting'],
 
   /* ===== index: Ako vzniká ===== */
   ['h','.madeof .section-head .eyebrow','How it’s made'],
   ['h','.madeof .section-head h2','Nature, condensed into <span class="hl">12 millimetres</span>'],
-  ['h','.madeof .section-head p','Sintered stone isn’t a synthetic material. It’s a natural mineral material — created by a process that mimics how stone forms in nature, only many times faster. That’s why the market also calls it technical or ceramic stone, even though it contains no resins or plastics.'],
+  ['h','.madeof .section-head p','Sintered stone isn’t synthetic. It’s made entirely of natural minerals, formed by a process that mirrors how stone is created in nature — just far faster. You may also see it sold as porcelain or ceramic stone; either way, it contains no resins or plastics.'],
   ['a','.slab','aria-label','Rotating sintered stone slab, 1600 × 3200 × 12 mm'],
   ['h','.msticker b',['Minerals','Pressure','Heat','Slab']],
   ['h','.slab-dim','<b>1600 × 3200 × 12 mm</b> — one large-format slab'],
@@ -115,12 +115,12 @@ var EN=[
   /* ===== index: Ako to funguje ===== */
   ['h','.how-topbar .eyebrow','How it works'],
   ['h','.how-title','From idea<br />to finished kitchen'],
-  ['h','.how-sub','A simple process with clear steps — and people who understand the material.'],
-  ['h','.how-step h3',['Tell us about your project','Free on-site measurement','Fabrication and installation']],
+  ['h','.how-sub','A simple process with clear steps — and people who know the material inside out.'],
+  ['h','.how-step h3',['Tell us about your project','Free on-site measurement','Fabrication and fitting']],
   ['h','.how-step p',[
-    '60 seconds: type, decor and timing. We’ll prepare a custom price estimate, usually within 24 hours.',
-    'We’ll come to you, measure the space precisely and fine-tune the details — decor, thickness, edges. Free of charge and with no obligation. After the measurement you’ll receive an exact quote — item by item, so you know in advance what you’re paying for.',
-    'We supply the material; fabrication and installation are handled by experienced stonemasons we’ve worked with for years.']],
+    '60 seconds: project type, decor and timing. Your custom price estimate follows, usually within 24 hours.',
+    'We come to you, measure the space precisely and fine-tune the details — decor, thickness, edges. Free of charge, no obligation. After the measurement you’ll receive an itemised quote, so you know exactly what you’re paying for before you commit.',
+    'We supply the material; fabrication and fitting are handled by experienced stonemasons we’ve worked with for years.']],
   ['a','.how-media figure img','alt',[
     'Decor and floor-plan consultation with stone samples',
     'Kitchen design — idea and planning',
@@ -128,29 +128,29 @@ var EN=[
   ['a','.how-step-thumb img','alt',[
     'Project consultation — floor plan and sintered stone samples',
     'Free on-site measurement at the customer’s home',
-    'Fabrication and installation — stonemasons fitting a sintered stone worktop']],
+    'Fabrication and fitting — stonemasons at work on a sintered stone worktop']],
 
   /* ===== index: CTA note (2×) ===== */
-  ['h','.cta-note','No obligation · we’ll prepare your custom price estimate, usually within 24 hours'],
+  ['h','.cta-note','No obligation · your custom price estimate, usually within 24 hours'],
 
   /* ===== index: FAQ ===== */
   ['h','#faq .section-head .eyebrow','Common questions'],
-  ['h','#faq .section-head h2','What clients ask most often'],
-  ['h','#faq .section-head p','Can’t find your answer here? Write to us or call — we’re happy to help.'],
+  ['h','#faq .section-head h2','The questions we hear most often'],
+  ['h','#faq .section-head p','Can’t see your question here? Email or call us — we’re happy to help.'],
   ['t','.faq-item summary',[
     'How much does a sintered stone worktop cost?',
-    'Is the estimate binding? Will extra charges appear later?',
-    'Do you also do the installation?',
-    'How does sintered stone differ from engineered stone or Dekton?',
-    'Can it take a hot pot and cutting?',
+    'Is the estimate binding? Are there any hidden costs?',
+    'Do you fit the worktops yourselves?',
+    'How is sintered stone different from engineered quartz or Dekton?',
+    'Can it take hot pans and chopping?',
     'Where can I see the material in person?']],
   ['h','.faq-item .faq-a',[
-    'It depends on the decor, the amount of material and the design of your project — so instead of one list price, we prepare a custom estimate. It takes 60 seconds in the configurator, and within 24 hours you’ll have it in your inbox, with no obligation.',
-    'The estimate gives you a realistic range to decide with. You’ll receive an exact quote after a free on-site measurement — item by item, including cut-outs and edges, so you know in advance what you’re paying for.',
-    'We don’t install directly. We supply the material, while fabrication and fitting are handled by experienced stonemasons we’ve worked with for years and who know this material well. The craftsmanship is what determines the result — so we don’t leave it to chance.',
-    'Engineered stone (quartz) is held together by resins. Sintered stone is made purely of minerals, pressure and heat — no resins, no plastics. In practice this means higher heat and UV resistance and a surface that never needs sealing. Dekton is a brand name for the same type of material from another manufacturer.',
-    'You can place a hot pot or pan directly on the worktop. The surface is highly scratch-resistant — everyday use won’t damage it. We recommend a cutting board more for the sake of your knives than the worktop.',
-    'In our showroom in a Renaissance manor in Bošany — you can see and touch the decors and full-size slabs in person.']],
+    'It depends on the decor, how much material you need and the design of the project — which is why we prepare a custom estimate rather than quoting a single list price. The four questions take about a minute, and your estimate is usually in your inbox within 24 hours, with no obligation.',
+    'The estimate isn’t binding — it gives you a realistic range to plan around. The exact figure comes after a free on-site measurement, as an itemised quote — cut-outs, edges and all — so you know precisely what you’re paying for before you commit.',
+    'Not ourselves, no. We supply the material; fabrication and fitting are done by experienced stonemasons we’ve worked with for years and who know this material well. With stone, the craftsmanship decides the result — so we don’t leave it to chance.',
+    'Engineered quartz is bound with resins. Sintered stone is made of nothing but minerals, pressure and heat — no resins, no plastics. In practice that means better heat and UV resistance, and a surface that never needs sealing. Dekton is simply a brand of sintered stone from another manufacturer.',
+    'Yes — a hot pot or pan can go straight onto the worktop. The surface is also highly scratch-resistant in everyday use. We’d still suggest a chopping board, though — more for your knives’ sake than the stone’s.',
+    'At our showroom in a Renaissance manor in Bošany — you can see and touch the decors and full-size slabs for yourself.']],
 
   /* ===== index: Aplikácie ===== */
   ['h','.apps-head .eyebrow','Versatile applications'],
@@ -164,7 +164,7 @@ var EN=[
 
   /* ===== index: Recenzie ===== */
   ['h','.tm-head .eyebrow','What clients say'],
-  ['h','.tm-head h2','Customers who already have their worktop'],
+  ['h','.tm-head h2','People who already live with the stone'],
   ['h','.tm-head p','Real projects, real people — rated 5.0 ★ on Google.'],
   ['a','.g-badge','aria-label','Google rating: 5.0 out of 5'],
   ['h','.g-num','5.0'],
@@ -177,9 +177,9 @@ var EN=[
     'Kitchen with sintered stone by Orostone',
     'Interior with a sintered stone worktop by Orostone']],
   ['h','.tmc blockquote',[
-    '“We were looking for something special for our new kitchen, and Roman Travertine from Orostone was love at first sight. The whole process — from choosing the decor through measurement to installation — went completely smoothly.”',
-    '“We were choosing stone for a modern kitchen and Arden Gold won us over with its texture and warm tone. We reached out to Orostone on a recommendation and haven’t regretted it for a second.”',
-    '“The Orostone team was very professional — they explained everything in detail and gave us honest advice. Installation was quick and the result exceeded our expectations. Highly recommended!”',
+    '“We wanted something special for our new kitchen, and Roman Travertine from Orostone was love at first sight. The whole process — from choosing the decor to measurement and installation — couldn’t have gone more smoothly.”',
+    '“We were looking for stone for a modern kitchen, and Arden Gold won us over with its texture and warm tone. We came to Orostone on a recommendation and haven’t regretted it for a second.”',
+    '“The Orostone team were thoroughly professional — they explained everything in detail and gave us honest advice. Installation was quick and the result exceeded our expectations. Highly recommended!”',
     '“The surface looks luxurious, is easy to look after and fits our interior perfectly. Thank you for a job well done.”']],
   ['h','.tmc .who b',['Lucia & Tomáš','Marek','Petra','Ján']],
   ['h','.tmc .who small',['Interior stylist & IT analyst','Lawyer, Bratislava','Architect','Entrepreneur']],
@@ -187,17 +187,17 @@ var EN=[
   /* ===== index: Risk-reversal ===== */
   ['h','.risk .item b',[
     'Revives an older kitchen','Perfect for a new build',
-    'Designed for real life','Premium look. Practical every day.']],
+    'Designed for real life','Looks premium. Works every day.']],
   ['h','.risk .item > span:last-child',[
-    'We can replace your worktop without replacing the whole kitchen.',
+    'We can replace just the worktop — no need to redo the whole kitchen.',
     'Worktops, islands and splashbacks in one coordinated material.',
-    'Resistant to heat, stains and everyday use.',
+    'Stands up to heat, stains and everyday wear.',
     'A slim 12 mm profile and clean lines for a modern interior.']],
 
   /* ===== index: Final CTA ===== */
   ['h','.finalcta .eyebrow','Next step'],
   ['h','.finalcta h2','Find out what your worktop would cost'],
-  ['h','.finalcta .band > p','Tell us about your project in 60 seconds and we’ll prepare a custom price estimate. No obligation, usually within 24 hours.'],
+  ['h','.finalcta .band > p','Tell us about your project in 60 seconds and we’ll prepare your custom price estimate. No obligation, usually within 24 hours.'],
 
   /* ===== index: pätička ===== */
   ['a','.foot-logo','aria-label','Orostone — home page'],
@@ -209,7 +209,7 @@ var EN=[
   ['h','.foot-h',['Navigation','Contact']],
   ['h','nav.foot-col ul a',['Projects','How it works','FAQ','Orostone.sk']],
   ['t','.foot-linkbtn','Price estimate'],
-  ['h','.foot-contact b',['Showroom','Phone','E-mail','Address']],
+  ['h','.foot-contact b',['Showroom','Phone','Email','Address']],
   ['h','.foot-contact a[href^="https://rkb"]','Renaissance manor, Bošany'],
   ['t','.fb-left','© 2026 Orostone · Sintered stone'],
   ['h','.foot-legal a',['Privacy policy','Terms & conditions','Cookie settings']],
@@ -217,7 +217,7 @@ var EN=[
   /* ===== index: sticky lišta ===== */
   ['a','#stickyBar','aria-label','Get a price estimate'],
   ['h','.sticky-txt','<b>Price estimate</b><span>usually within 24 hours</span>'],
-  ['t','.sticky-btn','Get it '],
+  ['t','.sticky-btn','Start '],
 
   /* ===== index: lightbox ===== */
   ['a','#lbx','aria-label','Project gallery'],
@@ -234,7 +234,7 @@ var EN=[
   ['a','#qclose','aria-label','Close'],
   ['h','.qstep[data-step="1"] .q-label','Your project'],
   ['h','.qstep[data-step="1"] .q','What can we help you with?'],
-  ['h','.qstep[data-step="1"] .q-sub','Select all that apply — combinations are welcome. You can always add more later.'],
+  ['h','.qstep[data-step="1"] .q-sub','Choose as many as you like — you can always add more later.'],
   ['a','.opts[data-key="aplikacia"]','aria-label','What can we help you with'],
   ['h','.opts[data-key="aplikacia"] .opt .tx b',[
     'Kitchen worktop','Kitchen island','Kitchen splashback','Bathroom or another space']],
@@ -244,8 +244,8 @@ var EN=[
   ['a','#in-other','placeholder','E.g. bathroom cladding, stairs, a fireplace, a dining table…'],
   ['h','#q1next','Continue'],
   ['h','.qstep[data-step="2"] .q-label','Decor direction'],
-  ['h','.qstep[data-step="2"] .q','Which direction appeals to you?'],
-  ['h','.qstep[data-step="2"] .q-sub','It’s not a binding choice — it just gives us a feel for your taste.'],
+  ['h','.qstep[data-step="2"] .q','Which look are you drawn to?'],
+  ['h','.qstep[data-step="2"] .q-sub','Nothing binding — it just gives us a sense of your taste.'],
   ['h','.decor .cap small',[
     'Pure white','Soft white','White marble','White marble','Dramatic marble','Cream marble',
     'Warm travertine','Grey stone','Warm gold','Bold dark','Dark gold','Black marble']],
@@ -257,34 +257,34 @@ var EN=[
   ['h','.decor.wide .tx b','I can’t decide — help me choose'],
   ['h','.decor.wide .tx small','We’ll recommend decors to suit your kitchen'],
   ['h','.qstep[data-step="3"] .q-label','Timing'],
-  ['h','.qstep[data-step="3"] .q','When are you planning it?'],
-  ['h','.qstep[data-step="3"] .q-sub','This tells us how quickly we should get back to you.'],
+  ['h','.qstep[data-step="3"] .q','What’s your timeframe?'],
+  ['h','.qstep[data-step="3"] .q-sub','So we know how quickly to get back to you.'],
   ['h','.opts[data-key="termin"] .opt .tx b',['As soon as possible','In 1–3 months','Just looking for now']],
-  ['h','.opts[data-key="termin"] .opt .tx small',['Within 1 month','It’s in the works','I want a price estimate']],
+  ['h','.opts[data-key="termin"] .opt .tx small',['Within a month','It’s in the works','I’d like a rough price']],
   ['h','.qstep[data-step="4"] .q-label','Last step'],
-  ['h','.qstep[data-step="4"] .q','Where should we send your price?'],
-  ['h','.qstep[data-step="4"] .q-sub','We’ll prepare a <b style="color:var(--light);font-weight:600">custom price estimate</b> and get back to you with no obligation — usually within 24 hours.'],
+  ['h','.qstep[data-step="4"] .q','Where should we send your estimate?'],
+  ['h','.qstep[data-step="4"] .q-sub','We’ll put together your <b style="color:var(--light);font-weight:600">custom price estimate</b> and send it over — no obligation, usually within 24 hours.'],
   ['h','#f-name label','Name'],
   ['a','#in-name','placeholder','E.g. Jane Smith'],
   ['h','#f-name .msg','Please enter your name.'],
-  ['h','#f-email label','E-mail'],
+  ['h','#f-email label','Email'],
   ['a','#in-email','placeholder','jane@email.com'],
-  ['h','#f-email .msg','Please enter a valid e-mail address.'],
-  ['h','#f-phone label','Phone <span class="opt-tag">· recommended, speeds up your estimate</span>'],
-  ['h','#f-phone .msg','Please check the phone number.'],
+  ['h','#f-email .msg','Please enter a valid email address.'],
+  ['h','#f-phone label','Phone <span class="opt-tag">· recommended — you’ll get your estimate sooner</span>'],
+  ['h','#f-phone .msg','Please check your phone number.'],
   ['h','#f-consent > span','I agree that Orostone may contact me about my project. No obligation, no spam.'],
   ['t','#leadForm button[type="submit"]','Get my price estimate '],
   ['t','#leadForm .reassure',' No obligation · We never share your details'],
 
   /* ===== dakujeme.html ===== */
   ['h','.ty .eyebrow','Request received'],
-  ['h','.ty > p','We’ll get back to you, usually within 24 hours, to confirm the details and send your custom price estimate.'],
+  ['h','.ty > p','We’ll be in touch — usually within 24 hours — to confirm the details and send over your custom price estimate.'],
   ['h','.ty .next li > span:last-child',[
     'We’ll contact you to confirm the dimensions, decor and thickness.',
     'We’ll prepare your <b>price estimate</b> and arrange a free on-site measurement.',
     'You can also see the slabs in person at our showroom in Bošany.']],
   ['t','.ty .reassure',' In a hurry? Call '],
-  ['h','.ty .visit p','While we prepare your price, take a look at our decors and completed projects.'],
+  ['h','.ty .visit p','While we work on your estimate, have a look at our decors and completed projects.'],
   ['t','.ty .visit .cta','Visit orostone.sk '],
   ['h','.backlink','← Back to the worktop page'],
   ['h','.foot-in > span','© Orostone — sintered stone for kitchens and interiors'],
@@ -296,8 +296,8 @@ var EN=[
 var META_EN = document.getElementById('leadForm')
   ? {title:'Orostone — Sintered Stone Worktops | Custom Price Estimate',
      desc:'Answer 4 short questions in 60 seconds and we’ll prepare a custom price estimate for your sintered stone worktop — usually within 24 hours, no obligation. Real projects, showroom in Bošany.'}
-  : {title:'Thank you — we’re preparing your price | Orostone',
-     desc:'Thank you for your enquiry. We’ll prepare a custom price estimate and get back to you, usually within 24 hours.'};
+  : {title:'Thank you — we’re preparing your estimate | Orostone',
+     desc:'Thank you for your enquiry. We’re preparing your custom price estimate and will be in touch, usually within 24 hours.'};
 
 /* ---------------- aplikačný engine ---------------- */
 var saved=[];            /* snapshoty SK: {kind:'h'|'t'|'a', node, attr?, orig} */
@@ -432,7 +432,7 @@ function tyHeading(lang){
   var h=document.getElementById('ty-h');if(!h)return;
   var fn=h.dataset.fn||'';
   h.textContent=lang==='en'
-    ?('Thank you'+(fn?', '+fn:'')+' — we’re preparing your price.')
+    ?('Thank you'+(fn?', '+fn:'')+' — we’re preparing your estimate.')
     :('Ďakujeme'+(fn?', '+fn:'')+' — pripravujeme vašu cenu.');
 }
 
