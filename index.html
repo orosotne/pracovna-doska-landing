@@ -337,6 +337,13 @@ h1,h2,h3,.serif{font-family:'Montserrat','Montserrat Fallback',sans-serif;font-w
 @keyframes hbspin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.hb-ring{animation:none}}
 @media(max-width:1000px){.hero-badge{display:none}}
+/* rovnaký rotujúci odznak zopakovaný ako tichý dizajnový detail celkom dole
+   na mobile — pod footrom, mimo hero (kde sa ≤1000px skrýva) */
+.foot-badge{display:none}
+@media(max-width:640px){
+  .foot-badge{display:block;position:relative;width:clamp(92px,24vw,120px);aspect-ratio:1;
+    margin:40px auto 34px;filter:drop-shadow(0 12px 26px rgba(0,0,0,.5))}
+}
 @media(min-width:960px){.hero{padding:80px 0}}
 /* desktop: hero + USP band spolu = 1 obrazovka (USP above the fold) */
 @media(min-width:1025px){.hero{min-height:calc(100vh - var(--bandh))}}
@@ -482,6 +489,11 @@ section.block{padding-top:70px;padding-bottom:70px}
 @media(max-width:959px){.rb-in b{font-size:24px}.rb-in span{font-size:10px}}
 .gal-trust{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 14px;margin-top:28px;font-size:13px;color:var(--muted-2);text-align:center}
 .gt-dot{width:3px;height:3px;border-radius:50%;background:var(--gold-dim)}
+/* na mobile sa obe frázy nezmestia na jeden riadok vedľa seba — deliaca
+   bodka potom osirotene visí na konci prvého riadku (flex-wrap ju nevie
+   „prilepiť" k správnemu riadku); pri zalomení ju radšej skryjeme a frázy
+   necháme stáť jednoducho pod sebou */
+@media(max-width:640px){.gal-trust{gap:6px 0}.gt-dot{display:none}}
 .lbx{position:fixed;inset:0;z-index:70;background:var(--stone-950);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:64px 16px 18px;opacity:0;visibility:hidden;transition:opacity .32s var(--ease),visibility .32s}
 .lbx.open{opacity:1;visibility:visible}
 .lb-fig{margin:0;display:flex;flex-direction:column;align-items:center;gap:14px;max-width:min(1200px,94vw)}
@@ -1289,10 +1301,10 @@ section.block{padding-top:70px;padding-bottom:70px}
       <div class="slab-dim"><b>1600 × 3200 × 12 mm</b> — jedna veľkoformátová doska</div>
     </div>
     <div class="madeof-facts" data-proc data-reveal-group>
-      <div class="mfact"><span class="mf-ic" aria-hidden="true"><img src="icons/sym-mineraly.svg" alt="" width="46" height="46" loading="lazy" decoding="async" /></span><span class="mf-n">01</span><b>Prírodné minerály</b><p>Kremeň, prírodný piesok, íly a minerálne oxidy — bez živíc a plastových spojív.</p></div>
-      <div class="mfact"><span class="mf-ic" aria-hidden="true"><img src="icons/sym-teplo.svg" alt="" width="46" height="46" loading="lazy" decoding="async" /></span><span class="mf-n">02</span><b>Obrovský tlak</b><p>Minerálny prach sa lisuje pod extrémnym tlakom do kompaktnej dosky.</p></div>
-      <div class="mfact"><span class="mf-ic" aria-hidden="true"><img src="icons/sym-tlak.svg" alt="" width="46" height="46" loading="lazy" decoding="async" /></span><span class="mf-n">03</span><b>Sintrovanie teplom</b><p>Vypaľovaním za veľmi vysokej teploty sa častice spoja do jedného celku.</p></div>
-      <div class="mfact"><span class="mf-ic" aria-hidden="true"><img src="icons/sym-doska.svg" alt="" width="46" height="46" loading="lazy" decoding="async" /></span><span class="mf-n">04</span><b>Veľký formát</b><p>Jedna doska 1600 × 3200 mm pokryje ostrov aj zástenu s minimom spojov.</p></div>
+      <div class="mfact"><span class="mf-ic" aria-hidden="true"><img src="icons/sym-mineraly-solid.svg" alt="" width="46" height="46" loading="lazy" decoding="async" /></span><span class="mf-n">01</span><b>Prírodné minerály</b><p>Kremeň, prírodný piesok, íly a minerálne oxidy — bez živíc a plastových spojív.</p></div>
+      <div class="mfact"><span class="mf-ic" aria-hidden="true"><img src="icons/sym-teplo-solid.svg" alt="" width="46" height="46" loading="lazy" decoding="async" /></span><span class="mf-n">02</span><b>Obrovský tlak</b><p>Minerálny prach sa lisuje pod extrémnym tlakom do kompaktnej dosky.</p></div>
+      <div class="mfact"><span class="mf-ic" aria-hidden="true"><img src="icons/sym-tlak-solid.svg" alt="" width="46" height="46" loading="lazy" decoding="async" /></span><span class="mf-n">03</span><b>Sintrovanie teplom</b><p>Vypaľovaním za veľmi vysokej teploty sa častice spoja do jedného celku.</p></div>
+      <div class="mfact"><span class="mf-ic" aria-hidden="true"><img src="icons/sym-doska-solid.svg" alt="" width="46" height="46" loading="lazy" decoding="async" /></span><span class="mf-n">04</span><b>Veľký formát</b><p>Jedna doska 1600 × 3200 mm pokryje ostrov aj zástenu s minimom spojov.</p></div>
     </div>
   </div>
 </section>
@@ -1658,6 +1670,20 @@ section.block{padding-top:70px;padding-bottom:70px}
     </div>
   </div>
 </footer>
+
+<!-- tichý rotujúci odznak — dizajnový detail celkom dole, len na mobile -->
+<div class="foot-badge" aria-hidden="true">
+  <svg class="hb-ring" viewBox="0 0 120 120">
+    <defs><path id="fbCircle" d="M 60,60 m -46,0 a 46,46 0 1,1 92,0 a 46,46 0 1,1 -92,0"></path></defs>
+    <g font-family="'Montserrat','Montserrat Fallback',sans-serif" font-weight="700" letter-spacing="1.1">
+      <text font-size="11" fill="#F9F9F7" letter-spacing="3"><textPath href="#fbCircle" startOffset="25%" text-anchor="middle">KRÁSA KAMEŇA</textPath></text>
+      <text font-size="11" fill="#F9F9F7" font-style="italic"><textPath href="#fbCircle" startOffset="75%" text-anchor="middle">SILA TECHNOLÓGIE</textPath></text>
+      <text font-size="12.5" fill="#ECD488"><textPath href="#fbCircle" startOffset="0%" text-anchor="middle">✦</textPath></text>
+      <text font-size="12.5" fill="#ECD488"><textPath href="#fbCircle" startOffset="50%" text-anchor="middle">✦</textPath></text>
+    </g>
+  </svg>
+  <span class="hb-disc"><svg viewBox="0 0 1080 654.84"><polygon points="1080 207.41 1080 238.72 359.25 654.84 0 447.43 0 416.12 720.75 0 1080 207.41" fill="#121212"></polygon></svg></span>
+</div>
 
 <!-- STICKY MOBILE CTA — zobrazí sa až po opustení hero CTA (nie od prvej sekundy) -->
 <div class="sticky" id="stickyBar" data-open-quiz role="button" tabindex="0" aria-label="Chcem orientačnú cenu">
