@@ -15,13 +15,26 @@
 //   MAKE_WEBHOOK_URL   (required)  the real Make hook URL, e.g. https://hook.eu2.make.com/xxxx
 //   PROXY_TOKEN        (required)  random shared secret; Make drops any payload without it
 //   TURNSTILE_SECRET   (optional)  Cloudflare Turnstile secret key; enables Turnstile when set
+//   CAPI_ACCESS_TOKEN  (optional)  Meta Conversions API token (Events Manager → dataset →
+//                                  Settings → Conversions API → Generate access token).
+//                                  When set, a server-side Lead event is sent to Meta with the
+//                                  SAME event_id the browser pixel uses on /dakujeme → Meta
+//                                  dedupes the pair; ad-blocked/iOS browsers still count.
+//   CAPI_PIXEL_IDS     (optional)  comma-separated pixel/dataset ids; default = primárny pixel
+//                                  (druhý LP pixel 614488614598498 nie je v BM „Orostone",
+//                                  token z datasetu Orostone webstranka by preň nemal práva)
 //
 // Classic Node (req, res) signature with raw res methods so it works regardless of
 // whether Vercel's zero-config launcher injects body/response helpers.
 
+import { createHash } from 'node:crypto';
+
 const MAKE_WEBHOOK_URL = process.env.MAKE_WEBHOOK_URL || '';
 const PROXY_TOKEN = process.env.PROXY_TOKEN || '';
 const TURNSTILE_SECRET = process.env.TURNSTILE_SECRET || '';
+const CAPI_ACCESS_TOKEN = process.env.CAPI_ACCESS_TOKEN || '';
+const CAPI_PIXEL_IDS = (process.env.CAPI_PIXEL_IDS || '712209907542673')
+  .split(',').map((s) => s.trim()).filter(Boolean);
 const EXPECTED_HOSTNAME = 'pracovnadoska.orostone.sk';
 const EXPECTED_ACTION = 'lp2_lead';
 const FETCH_TIMEOUT_MS = 6000;
@@ -43,6 +56,60 @@ function send(res, code, obj) {
 function drop(res, reason) {
   try { console.warn('[lead] drop:', reason); } catch {}
   return send(res, 200, { ok: true });
+}
+
+// ── Meta Conversions API: server-side Lead event, deduped with the browser pixel ──
+// The browser fires fbq('track','Lead',{...},{eventID}) on /dakujeme with the same
+// event_id that travels in the lead payload — Meta collapses the pair, so leads from
+// ad-blocked/ITP browsers are still measured. Failures only log; a lead is NEVER
+// failed because of measurement.
+function sha256(v) { return createHash('sha256').update(v).digest('hex'); }
+function capiUserData(lead, req) {
+  const u = {};
+  const email = String(lead.email || '').trim().toLowerCase();
+  if (email) u.em = [sha256(email)];
+  let ph = String(lead.phone || '').replace(/\D/g, '');
+  if (ph.startsWith('00')) ph = ph.slice(2);
+  else if (ph.startsWith('0')) ph = '421' + ph.slice(1); // SK national → E.164 digits
+  if (ph) u.ph = [sha256(ph)];
+  const name = String(lead.name || '').trim().toLowerCase().split(/\s+/);
+  if (name[0]) u.fn = [sha256(name[0])];
+  if (name.length > 1) u.ln = [sha256(name[name.length - 1])];
+  if (lead.fbc) u.fbc = String(lead.fbc);
+  if (lead.fbp) u.fbp = String(lead.fbp);
+  if (lead.user_agent) u.client_user_agent = String(lead.user_agent);
+  const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim();
+  if (ip) u.client_ip_address = ip;
+  return u;
+}
+async function sendCapiLead(lead, req) {
+  if (!CAPI_ACCESS_TOKEN || !lead.event_id || !lead.email) return; // test-pingy a neúplné payloady preskoč
+  const event = {
+    event_name: 'Lead',
+    event_time: Math.floor(Date.now() / 1000),
+    event_id: String(lead.event_id),
+    event_source_url: String(lead.landing_url || 'https://pracovnadoska.orostone.sk/'),
+    action_source: 'website',
+    user_data: capiUserData(lead, req),
+    custom_data: { content_name: 'pracovna-doska', currency: 'EUR', value: 0 },
+  };
+  for (const pixelId of CAPI_PIXEL_IDS) {
+    try {
+      const r = await fetch(`https://graph.facebook.com/v23.0/${pixelId}/events`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data: [event], access_token: CAPI_ACCESS_TOKEN }),
+        signal: AbortSignal.timeout(4000),
+      });
+      if (!r.ok) {
+        let detail = '';
+        try { detail = JSON.stringify((await r.json()).error || {}).slice(0, 300); } catch {}
+        console.error('[lead] CAPI', pixelId, 'returned', r.status, detail);
+      }
+    } catch (e) {
+      console.error('[lead] CAPI', pixelId, 'failed:', (e && e.message) || e);
+    }
+  }
 }
 
 function readBody(req) {
@@ -160,5 +227,7 @@ export default async function handler(req, res) {
     try { console.error('[lead] FORWARD-FAILED payload:', JSON.stringify(clean)); } catch {}
     return send(res, 502, { ok: false, error: 'forward-failed' });
   }
+  // Meranie až PO doručení leadu; musí dobehnúť pred res.end (serverless nepokračuje po odpovedi)
+  try { await sendCapiLead(clean, req); } catch {}
   return send(res, 200, { ok: true });
 }
