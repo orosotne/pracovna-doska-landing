@@ -56,7 +56,6 @@ if(window.OS_CONSENT&&OS_CONSENT.state==='denied')fbq('consent','revoke'); /* op
 if(window.OS_CONSENT)OS_CONSENT.onGrant(function(){fbq('track','PageView');}); /* opt-out: beží hneď, pokiaľ nie je denied */
 else fbq('track','PageView'); /* fallback: keby consent.js nedobehol, meranie nesmie vypadnúť */
 </script>
-<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=712209907542673&ev=PageView&noscript=1"/></noscript>
 <script>
 (function(){var id=(window.OS_CFG||{}).GA4_ID;if(!id||id.indexOf('G-')!==0)return;
   var s=document.createElement('script');s.async=!0;s.src='https://www.googletagmanager.com/gtag/js?id='+id;document.head.appendChild(s);
@@ -162,6 +161,8 @@ main{flex:1 0 auto;display:flex;align-items:center;justify-content:center;paddin
 </style>
 </head>
 <body>
+<!-- Meta Pixel noscript fallback — v <body>, lebo <noscript> s <img> nie je v <head> validný -->
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=712209907542673&amp;ev=PageView&amp;noscript=1"/></noscript>
 
 <header class="site-header">
   <div class="header-inner">
@@ -217,7 +218,7 @@ main{flex:1 0 auto;display:flex;align-items:center;justify-content:center;paddin
         <p>Kým pripravujeme vašu cenu, pozrite si naše dekory a realizácie.</p>
         <a class="cta ghost" href="https://orostone.sk" target="_blank" rel="noopener noreferrer">Prejsť na orostone.sk
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
-        <br><a class="backlink" href="index.html">← Späť na pracovnú dosku</a>
+        <br><a class="backlink" href="/">← Späť na pracovnú dosku</a>
       </div>
     </div>
   </div>

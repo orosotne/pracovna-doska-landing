@@ -134,16 +134,31 @@ export default async function handler(req, res) {
   clean.proxy_token = PROXY_TOKEN;
   if (botSuspect) { clean.bot_suspect = botSuspect; console.warn('[lead] softpass:', botSuspect); }
 
-  try {
-    const r = await fetch(MAKE_WEBHOOK_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(clean),
-      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
-    });
-    if (!r.ok) console.error('[lead] Make forward returned', r.status);
-  } catch (e) {
-    console.error('[lead] Make forward failed:', (e && e.message) || e);
+  // Forward to Make with one retry. A failed forward must NOT pretend success:
+  // the client (index.html submit handler) shows an error + phone number on non-2xx,
+  // so the visitor knows to retry/call instead of walking away from a lost lead.
+  // (Bot drops above still return flat 200 — only infra failures surface as 502.)
+  const FORWARD_TIMEOUTS = [FETCH_TIMEOUT_MS, 4000];
+  let delivered = false;
+  for (let i = 0; i < FORWARD_TIMEOUTS.length && !delivered; i++) {
+    try {
+      const r = await fetch(MAKE_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(clean),
+        signal: AbortSignal.timeout(FORWARD_TIMEOUTS[i]),
+      });
+      if (r.ok) delivered = true;
+      else console.error('[lead] Make forward returned', r.status, 'attempt', i + 1);
+    } catch (e) {
+      console.error('[lead] Make forward failed:', (e && e.message) || e, 'attempt', i + 1);
+    }
+  }
+  if (!delivered) {
+    // Dead-letter into runtime logs (short retention on Hobby, but better than nothing) —
+    // the real safety net is the 502: the visitor is told the submit did not go through.
+    try { console.error('[lead] FORWARD-FAILED payload:', JSON.stringify(clean)); } catch {}
+    return send(res, 502, { ok: false, error: 'forward-failed' });
   }
   return send(res, 200, { ok: true });
 }

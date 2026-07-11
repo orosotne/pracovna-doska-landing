@@ -114,7 +114,7 @@
         {
           "@type": "Question",
           "name": "Čím sa sinterovaný kameň líši od umelého kameňa či Dektonu?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Umelý (technický) kameň drží pokope živicami. Sinterovaný kameň vzniká len z minerálov, tlaku a tepla — bez živíc a plastov. V praxi to znamená vyššiu odolnosť voči teplu a UV a povrch, ktorý netreba impregnovať. Dekton je obchodná značka toho istého typu materiálu od iného výrobcu." }
+          "acceptedAnswer": { "@type": "Answer", "text": "Pod „umelým kameňom“ sa najčastejšie myslí kremenný (quartz) kameň, ktorý drží pokope živicami. Sinterovaný kameň vzniká len z minerálov, tlaku a tepla — bez živíc a plastov. V praxi to znamená vyššiu odolnosť voči teplu a UV a povrch, ktorý netreba impregnovať. Dekton je obchodná značka sinterovaného kameňa od iného výrobcu." }
         },
         {
           "@type": "Question",
@@ -183,7 +183,6 @@ if(window.OS_CONSENT&&OS_CONSENT.state==='denied')fbq('consent','revoke'); /* op
 if(window.OS_CONSENT)OS_CONSENT.onGrant(function(){fbq('track','PageView');}); /* opt-out: beží hneď, pokiaľ nie je denied */
 else fbq('track','PageView'); /* fallback: keby consent.js nedobehol, meranie nesmie vypadnúť */
 </script>
-<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=712209907542673&ev=PageView&noscript=1"/></noscript>
 
 <!-- 3) Google Analytics 4 -->
 <script>
@@ -346,6 +345,7 @@ h1,h2,h3,.serif{font-family:'Montserrat','Montserrat Fallback',sans-serif;font-w
      vizuálna medzera hore aj dole (badge opticky vycentrovaný medzi footrom a sticky lištou) */
   .foot-badge{display:block;position:relative;width:clamp(150px,40vw,190px);aspect-ratio:1;
     margin:48px auto 34px;filter:drop-shadow(0 14px 30px rgba(0,0,0,.5))}
+  .foot-badge-img{width:100%;height:100%;display:block;animation:hbspin 24s linear infinite;will-change:transform}
 }
 @media(min-width:960px){.hero{padding:80px 0}}
 /* desktop: hero + USP band spolu = 1 obrazovka (USP above the fold) */
@@ -1008,33 +1008,15 @@ section.block{padding-top:70px;padding-bottom:70px}
 .field input{font-family:inherit;font-size:16px;color:var(--light);background:rgba(249,249,247,.05);border:1px solid var(--line-soft);border-radius:11px;padding:14px 15px;transition:border-color .2s,background .2s}
 .field input::placeholder{color:var(--muted-2)} .field input:focus{outline:none;border-color:var(--gold);background:rgba(236,212,136,.06)}
 .field.bad input{border-color:var(--err)} .field .msg{font-size:11.5px;color:var(--err);display:none} .field.bad .msg{display:block}
+.submit-err{font-size:12.5px;line-height:1.5;color:var(--err);text-align:center;margin-top:10px}
+.submit-err[hidden]{display:none}
+.submit-err a{color:var(--gold-soft)}
 .consent{display:flex;gap:11px;align-items:flex-start;font-size:12.5px;color:var(--muted);cursor:pointer;margin-top:2px}
 .consent input{margin-top:2px;accent-color:var(--gold);width:17px;height:17px;flex:0 0 auto;cursor:pointer}
 .consent.bad{color:var(--err)}
 .reassure{font-size:12.5px;color:var(--muted-2);margin-top:14px;text-align:center;line-height:1.5}
 /* ikona inline pred textom → pri zalomení nezostane vyosená vľavo */
 .reassure svg{color:var(--gold-dim);display:inline-block;vertical-align:middle;margin-right:8px;position:relative;top:-1px}
-/* quiz result */
-.qdone{display:none;text-align:center;animation:fade .6s var(--ease) both}
-.qdone.on{display:block}
-.qdone .seal{width:66px;height:66px;border-radius:50%;margin:8px auto 20px;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,rgba(236,212,136,.22),rgba(236,212,136,.05));border:1px solid var(--gold-dim)}
-.qdone h2{font-size:clamp(23px,5.6vw,30px);line-height:1.14;margin:0 0 10px} .qdone>p{color:var(--muted);font-size:15px;max-width:32em;margin:0 auto 24px}
-.next{list-style:none;padding:0;margin:0 auto 28px;display:grid;gap:12px;text-align:left;max-width:30em}
-.next li{display:flex;gap:13px;align-items:flex-start;font-size:14px;color:rgba(249,249,247,.86)}
-.next .n{flex:0 0 auto;width:26px;height:26px;border-radius:50%;border:1px solid var(--gold-dim);color:var(--gold);display:grid;place-items:center;font-size:12px;font-weight:600}
-.qdone .visit{max-width:34em;margin:2px auto 0;padding-top:22px;border-top:1px solid var(--line-soft);text-align:center}
-.qdone .visit p{color:var(--muted);font-size:13.5px;margin:0 0 14px}
-.qdone .visit .cta{display:inline-flex;align-items:center;gap:9px;padding:12px 22px;font-size:14px}
-.qdone .visit .cta svg{transition:transform .3s var(--ease)}
-.qdone .visit .cta:hover svg{transform:translate(2px,-2px)}
-.sample-card{position:relative;border:1px solid var(--line);border-radius:16px;padding:22px 20px;background:linear-gradient(180deg,rgba(236,212,136,.07),rgba(236,212,136,.03));box-shadow:0 22px 46px -30px rgba(0,0,0,.7);text-align:left;max-width:34em;margin:30px auto 0;display:flex;gap:16px;align-items:flex-start}
-.sample-card .ic{flex:0 0 auto;width:46px;height:46px;border-radius:11px;background:rgba(236,212,136,.1);color:var(--gold);display:grid;place-items:center}
-.sample-card b{font-weight:600;font-size:15px;display:block;margin-bottom:4px}
-.sample-card p{font-size:13px;color:var(--muted);margin:0 0 12px}
-.sample-card .price{color:var(--gold-soft);font-weight:600}
-.sample-card .cta{padding:11px 18px;font-size:13.5px}
-/* úzke displeje: ikona nad textom a CTA na celú šírku, nech tlačidlo nepretečie kartu */
-@media(max-width:520px){.sample-card{flex-direction:column}.sample-card .cta{width:100%}}
 
 /* ===== JEDEN reveal-engine — len desktop, JS-gated, bezpečný pre reduced-motion aj bez JS =====
    Skryté stavy žijú IBA v tomto guarde. Ak nezmatchuje (mobil <1025px, reduced-motion,
@@ -1091,6 +1073,8 @@ section.block{padding-top:70px;padding-bottom:70px}
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 </head>
 <body>
+<!-- Meta Pixel noscript fallback — v <body>, lebo <noscript> s <img> nie je v <head> validný -->
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=712209907542673&amp;ev=PageView&amp;noscript=1"/></noscript>
 
 <header class="site-header">
   <div class="header-inner">
@@ -1128,6 +1112,7 @@ section.block{padding-top:70px;padding-bottom:70px}
   </div>
 </header>
 
+<main>
 <!-- HERO -->
 <section class="hero">
   <img class="hero-bg" src="img/hero-statuario.webp" alt="Kuchynský ostrov a zástena zo sinterovaného kameňa Bianco Statuario" fetchpriority="high" />
@@ -1355,7 +1340,7 @@ section.block{padding-top:70px;padding-bottom:70px}
           <div class="how-step">
             <div class="how-step-main">
               <div class="n">1</div>
-              <div><h3>Poviete nám o projekte</h3><p>Za 60 sekúnd: typ, dekor a približná veľkosť. Pripravíme vám orientačnú cenu na mieru, spravidla do 24 hodín.</p></div>
+              <div><h3>Poviete nám o projekte</h3><p>Za 60 sekúnd: typ, dekor a termín. Pripravíme vám orientačnú cenu na mieru, spravidla do 24 hodín.</p></div>
             </div>
             <div class="how-step-thumb"><img src="img/how-1-projekt.webp" alt="Konzultácia projektu — pôdorys a vzorky sinterovaného kameňa" loading="lazy" /></div>
           </div>
@@ -1412,7 +1397,7 @@ section.block{padding-top:70px;padding-bottom:70px}
       </details>
       <details class="faq-item">
         <summary>Čím sa sinterovaný kameň líši od umelého kameňa či Dektonu?<span class="plus" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <p class="faq-a">Umelý (technický) kameň drží pokope živicami. Sinterovaný kameň vzniká len z minerálov, tlaku a tepla — bez živíc a plastov. V praxi to znamená vyššiu odolnosť voči teplu a UV a povrch, ktorý netreba impregnovať. Dekton je obchodná značka toho istého typu materiálu od iného výrobcu.</p>
+        <p class="faq-a">Pod „umelým kameňom“ sa najčastejšie myslí kremenný (quartz) kameň, ktorý drží pokope živicami. Sinterovaný kameň vzniká len z minerálov, tlaku a tepla — bez živíc a plastov. V praxi to znamená vyššiu odolnosť voči teplu a UV a povrch, ktorý netreba impregnovať. Dekton je obchodná značka sinterovaného kameňa od iného výrobcu.</p>
       </details>
       <details class="faq-item">
         <summary>Znesie horúci hrniec a krájanie?<span class="plus" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
@@ -1628,6 +1613,8 @@ section.block{padding-top:70px;padding-bottom:70px}
   </div>
 </section>
 
+</main>
+
 <footer class="site-footer">
   <div class="wrap footer-grid" data-reveal-group>
     <!-- brand -->
@@ -1699,24 +1686,13 @@ section.block{padding-top:70px;padding-bottom:70px}
   </div>
 </footer>
 
-<!-- tichý rotujúci odznak — dizajnový detail celkom dole, len na mobile -->
+<!-- rotujúci holografický sticker — dizajnový detail celkom dole, len na mobile -->
 <div class="foot-badge" aria-hidden="true">
-  <svg class="hb-ring" viewBox="0 0 120 120">
-    <defs><path id="fbCircle" d="M 60,60 m -46,0 a 46,46 0 1,1 92,0 a 46,46 0 1,1 -92,0"></path></defs>
-    <g font-family="'Montserrat','Montserrat Fallback',sans-serif" font-weight="700" letter-spacing="1.1">
-      <text font-size="11" fill="#F9F9F7" letter-spacing="3"><textPath href="#fbCircle" startOffset="25%" text-anchor="middle">KRÁSA KAMEŇA</textPath></text>
-      <text font-size="11" fill="#F9F9F7" font-style="italic"><textPath href="#fbCircle" startOffset="75%" text-anchor="middle">SILA TECHNOLÓGIE</textPath></text>
-      <!-- hviezdy ako reálne SVG tvary (nie znak ✦ — ten Montserrat nemá a iOS Safari ho nevykreslí);
-           tvar centrovaný v (0,0), umiestnený cez translate na radius 41 (9 h / 3 h) = opticky na strede textového prstenca -->
-      <path fill="#ECD488" d="M0 -5 L1.5 -1.5 L5 0 L1.5 1.5 L0 5 L-1.5 1.5 L-5 0 L-1.5 -1.5 Z" transform="translate(19,60)"/>
-      <path fill="#ECD488" d="M0 -5 L1.5 -1.5 L5 0 L1.5 1.5 L0 5 L-1.5 1.5 L-5 0 L-1.5 -1.5 Z" transform="translate(101,60)"/>
-    </g>
-  </svg>
-  <span class="hb-disc"><svg viewBox="0 0 1080 654.84"><polygon points="1080 207.41 1080 238.72 359.25 654.84 0 447.43 0 416.12 720.75 0 1080 207.41" fill="#121212"></polygon></svg></span>
+  <img class="foot-badge-img" src="img/orostone-holo-sticker.svg" alt="" width="190" height="190" loading="lazy" decoding="async" />
 </div>
 
 <!-- STICKY MOBILE CTA — zobrazí sa až po opustení hero CTA (nie od prvej sekundy) -->
-<div class="sticky" id="stickyBar" data-open-quiz role="button" tabindex="0" aria-label="Chcem orientačnú cenu">
+<div class="sticky" id="stickyBar" data-open-quiz role="button" tabindex="-1" aria-hidden="true" aria-label="Chcem orientačnú cenu">
   <div class="sticky-txt"><b>Orientačná cena</b><span>spravidla do 24 hodín</span></div>
   <div class="sticky-btn">Chcem ju <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
 </div>
@@ -1725,8 +1701,16 @@ section.block{padding-top:70px;padding-bottom:70px}
   var bar=document.getElementById('stickyBar'), trigger=document.querySelector('.hero-cta-row');
   if(!bar||!trigger||!window.IntersectionObserver)return;
   new IntersectionObserver(function(entries){
-    bar.classList.toggle('show', !entries[0].isIntersecting);
+    var show=!entries[0].isIntersecting;
+    bar.classList.toggle('show', show);
+    /* kým je lišta vysunutá mimo obrazovky, nemá byť tab-stop ani v accessibility strome */
+    bar.setAttribute('tabindex', show?'0':'-1');
+    bar.setAttribute('aria-hidden', show?'false':'true');
   },{rootMargin:'0px 0px -10% 0px'}).observe(trigger);
+  /* div s role="button" neaktivuje klik Enterom/medzerníkom sám od seba */
+  bar.addEventListener('keydown',function(e){
+    if(e.key==='Enter'||e.key===' '||e.key==='Spacebar'){e.preventDefault();bar.click();}
+  });
 })();
 </script>
 
@@ -1849,43 +1833,20 @@ section.block{padding-top:70px;padding-bottom:70px}
         <form class="fields" id="leadForm" novalidate>
           <!-- honeypot: skryté pole, ktoré človek nevidí ani nevyplní; ak ho vyplní bot, server (/api/lead) submit zahodí -->
           <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden"><label>Toto pole nevypĺňajte<input id="os_hp" name="os_ref_2" type="text" tabindex="-1" autocomplete="off"></label></div>
-          <div class="field" id="f-name"><label for="in-name">Meno</label><input id="in-name" type="text" autocomplete="name" placeholder="Napr. Jana Nováková"><span class="msg">Prosím, vyplňte meno.</span></div>
-          <div class="field" id="f-email"><label for="in-email">E-mail</label><input id="in-email" type="email" inputmode="email" autocomplete="email" placeholder="jana@email.sk"><span class="msg">Zadajte platný e-mail.</span></div>
-          <div class="field" id="f-phone"><label for="in-phone">Telefón <span class="opt-tag">· odporúčané, zrýchli prípravu ceny</span></label><input id="in-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0917 123 456"><span class="msg">Skontrolujte telefónne číslo.</span></div>
+          <div class="field" id="f-name"><label for="in-name">Meno</label><input id="in-name" type="text" autocomplete="name" placeholder="Napr. Jana Nováková" aria-describedby="msg-name"><span class="msg" id="msg-name">Prosím, vyplňte meno.</span></div>
+          <div class="field" id="f-email"><label for="in-email">E-mail</label><input id="in-email" type="email" inputmode="email" autocomplete="email" placeholder="jana@email.sk" aria-describedby="msg-email"><span class="msg" id="msg-email">Zadajte platný e-mail.</span></div>
+          <div class="field" id="f-phone"><label for="in-phone">Telefón <span class="opt-tag">· odporúčané, zrýchli prípravu ceny</span></label><input id="in-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0917 123 456" aria-describedby="msg-phone"><span class="msg" id="msg-phone">Skontrolujte telefónne číslo.</span></div>
           <label class="consent" id="f-consent"><input type="checkbox" id="in-consent"><span>Súhlasím, aby ma Orostone kontaktoval ohľadom môjho projektu. Nezáväzné, žiadny spam.</span></label>
           <div id="ts-slot" style="margin:4px 0 2px"></div>
           <button type="submit" class="cta block" style="margin-top:4px">Chcem orientačnú cenu
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+          <div class="submit-err" id="f-submit-err" role="alert" hidden></div>
           <div class="reassure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/></svg> Nezáväzné · Vaše dáta nezdieľame</div>
         </form>
       </div>
     </div>
 
-    <!-- result -->
-    <div class="qdone" id="qdone">
-      <div class="seal"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.7"><path d="M20 6 9 17l-5-5"/></svg></div>
-      <h2>Ďakujeme — pripravujeme vašu cenu.</h2>
-      <p>Ozveme sa vám spravidla do 24 hodín, aby sme doladili detaily a poslali orientačnú cenu na mieru.</p>
-      <ul class="next">
-        <li><span class="n">1</span><span>Ozveme sa vám a doladíme rozmery, dekor a hrúbku.</span></li>
-        <li><span class="n">2</span><span>Pripravíme <b style="color:#fff">orientačnú cenu</b> a dohodneme bezplatné zameranie.</span></li>
-        <li><span class="n">3</span><span>Platne si môžete pozrieť aj naživo v showroome v Bošanoch.</span></li>
-      </ul>
-      <div class="reassure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L7.9 9.8a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2Z"/></svg> Ponáhľate sa? Volajte <a href="tel:+421917588738" style="color:var(--gold-soft)">0917 588 738</a></div>
-      <div class="sample-card">
-        <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span>
-        <div>
-          <b>Chcete dekor vidieť a chytiť naživo?</b>
-          <p>Pošleme vám vzorku reálneho dekoru domov — za <span class="price">5,90 € s dopravou</span> po celom Slovensku.</p>
-          <button class="cta" id="sampleBtn">Objednať vzorku · 5,90 €</button>
-        </div>
-      </div>
-      <div class="visit">
-        <p>Kým pripravujeme vašu cenu, pozrite si naše dekory a realizácie.</p>
-        <a class="cta ghost" href="https://orostone.sk" target="_blank" rel="noopener noreferrer">Prejsť na orostone.sk
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
-      </div>
-    </div>
+    <!-- result obrazovka (#qdone) odstránená — submit presmerúva na /dakujeme (mŕtvy kód, nikdy sa nezobrazovala) -->
   </div>
 </div>
 
@@ -1894,9 +1855,9 @@ section.block{padding-top:70px;padding-bottom:70px}
   var TOTAL=4, state={step:1,started:false,answers:{}};
   var names={1:'Aplikácia',2:'Dekor',3:'Termín',4:'Kontakt'};
   var overlay=document.getElementById('overlay'), bar=document.getElementById('qbar');
-  var qnum=document.getElementById('qnum'), back=document.getElementById('qback'), doneBox=document.getElementById('qdone'), stepsWrap=document.getElementById('qsteps');
+  var qnum=document.getElementById('qnum'), back=document.getElementById('qback'), stepsWrap=document.getElementById('qsteps');
   var lastFocused=null;
-  function focusables(){return [].slice.call(overlay.querySelectorAll('button,a[href],input,[tabindex]:not([tabindex="-1"])')).filter(function(el){return el.offsetParent!==null;});}
+  function focusables(){return [].slice.call(overlay.querySelectorAll('button,a[href],input:not(#os_hp),[tabindex]:not([tabindex="-1"])')).filter(function(el){return el.offsetParent!==null;});}
 
   function analytics(ev,extra){window.dataLayer=window.dataLayer||[];window.dataLayer.push(Object.assign({event:ev},extra||{}));
     if(window.gtag)gtag('event',ev,extra||{}); /* GA4 */}
@@ -1913,7 +1874,8 @@ section.block{padding-top:70px;padding-bottom:70px}
     document.querySelectorAll('.qstep').forEach(function(s){s.classList.toggle('active',+s.dataset.step===state.step)});
     bar.style.width=(state.step/TOTAL*100)+'%'; qnum.textContent=state.step; back.hidden=state.step===1;
     if(state.step===4)renderTS();
-    var a=document.querySelector('.qstep.active'), f=a&&a.querySelector('button,input'); if(f){try{f.focus({preventScroll:true})}catch(e){}}
+    /* :not(#os_hp) — prvý input kroku 4 je skrytý honeypot; focus doň = užívateľ píše do neviditeľného poľa a server lead zahodí ako bota */
+    var a=document.querySelector('.qstep.active'), f=a&&a.querySelector('button,input:not(#os_hp)'); if(f){try{f.focus({preventScroll:true})}catch(e){}}
   }
   function goTo(n){state.step=Math.max(1,Math.min(TOTAL,n));render()}
   function openQuiz(){lastFocused=document.activeElement;overlay.classList.add('open');document.body.style.overflow='hidden';if(!state.started){state.started=true;analytics('lead_form_start')}render();}
@@ -1970,34 +1932,67 @@ section.block{padding-top:70px;padding-bottom:70px}
   var form=document.getElementById('leadForm');
   var elN=document.getElementById('in-name'),elE=document.getElementById('in-email'),elP=document.getElementById('in-phone'),elC=document.getElementById('in-consent');
   var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, phoneRe=/^[+()0-9\s-]{6,}$/;
-  function bad(id,v){document.getElementById(id).classList.toggle('bad',v)}
+  function bad(id,v){var f=document.getElementById(id);f.classList.toggle('bad',v);
+    var inp=f.querySelector('input');if(inp)inp.setAttribute('aria-invalid',v?'true':'false');}
+  var sending=false;
   form.addEventListener('submit',function(e){e.preventDefault();
+    if(sending)return;
     var okN=elN.value.trim().length>=2, okE=emailRe.test(elE.value.trim()), okP=elP.value.trim()===''||phoneRe.test(elP.value.trim()), okC=elC.checked;
     bad('f-name',!okN);bad('f-email',!okE);bad('f-phone',!okP);document.getElementById('f-consent').classList.toggle('bad',!okC);
-    if(!(okN&&okE&&okP&&okC))return;
+    if(!(okN&&okE&&okP&&okC)){
+      /* fokus na prvé neplatné pole — screen reader prečíta label + chybovú hlášku (aria-describedby) */
+      var firstBad=!okN?elN:!okE?elE:!okP?elP:elC;
+      try{firstBad.focus({preventScroll:false})}catch(_e){}
+      return;
+    }
     state.answers.name=elN.value.trim();state.answers.email=elE.value.trim();state.answers.phone=elP.value.trim();state.answers.consent_ads=elC.checked?'true':'false';
     state.answers.jazyk=(window.OS_LANG==='en')?'EN':'SK'; /* jazyk stránky pri odoslaní — obchod vie, že klient chce komunikovať po anglicky */
     /* pridaj UTM/FB tracking + jedinečné event_id (deduplikácia pixel ↔ CAPI) */
     if(window.OS_TRACK_refresh)OS_TRACK_refresh();
     Object.assign(state.answers, window.OS_TRACK||{});
     var eid='lead-'+Date.now()+'-'+Math.random().toString(36).slice(2); state.answers.event_id=eid;
-    /* konverzia (Meta Lead + GA4 generate_lead) sa spustí až na /dakujeme (čistá URL) */
-    analytics('lead_submit',{aplikacia:state.answers.aplikacia,dekor:state.answers.dekor,termin:state.answers.termin});
     /* anti-bot signály (vyhodnotí ich server /api/lead): honeypot, čas vyplnenia, JS-marker */
     try{var _hp=document.getElementById('os_hp');state.answers.website=_hp?_hp.value:'';}catch(_e){}
     state.answers.form_render_ts=OS_RENDER_TS;state.answers.form_elapsed_ms=Date.now()-OS_RENDER_TS;state.answers.js_ok=1;
     try{state.answers['cf-turnstile-response']=OS_TS_TOKEN||(window.turnstile&&OS_TS_ID!==null?turnstile.getResponse(OS_TS_ID):'')||'';}catch(_e){}
-    /* odoslanie cez server-side proxy /api/lead (skryje Make webhook, filtruje botov; keepalive prežije presmerovanie) */
-    try{fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(state.answers),keepalive:true});}catch(err){}
-    /* odovzdaj event_id + meno na /dakujeme (tam Lead s rovnakým event_id = dedup s CAPI) */
-    try{sessionStorage.setItem('os_lead',JSON.stringify({event_id:eid,name:state.answers.name,aplikacia:state.answers.aplikacia,dekor:state.answers.dekor,termin:state.answers.termin}));}catch(e){}
-    window.location.href='dakujeme.html';
-  });
-  document.getElementById('sampleBtn').addEventListener('click',function(){
-    analytics('sample_intent');
-    if(window.fbq)fbq('trackCustom','SampleIntent');
-    /* TODO: presmerovať na platbu vzorky 5,90 € (Shopify / platobná brána) */
-    this.textContent=(window.OS_LANG==='en')?'Thank you — we’ll be in touch about your sample too':'Ďakujeme — ozveme sa aj so vzorkou';this.disabled=true;this.style.opacity='.7';
+
+    /* ===== odoslanie cez /api/lead — ČAKÁME na odpoveď servera =====
+       Presmerovanie na /dakujeme + konverzia (Meta Lead / GA4 generate_lead sa
+       strieľajú tam) sa spustia AŽ po potvrdenom prijatí (2xx). Pri chybe
+       (server 5xx / sieť) sa zobrazí hláška s telefónom — lead sa nestratí
+       potichu za falošným „Ďakujeme". Ak server neodpovie do 20 s, presmerujeme
+       aj tak: keepalive request beží ďalej a spravidla dorazí (radšej možný
+       duplikát než stratený lead). */
+    var EN=(window.OS_LANG==='en');
+    var btn=form.querySelector('button[type="submit"]'), errBox=document.getElementById('f-submit-err');
+    var btnHTML=btn.innerHTML;
+    sending=true;btn.disabled=true;btn.style.opacity='.72';
+    btn.textContent=EN?'Sending…':'Odosielame…';
+    if(errBox){errBox.hidden=true;errBox.textContent='';}
+    var done=false;
+    function succeed(){
+      if(done)return;done=true;
+      analytics('lead_submit',{aplikacia:state.answers.aplikacia,dekor:state.answers.dekor,termin:state.answers.termin});
+      /* odovzdaj event_id + meno na /dakujeme (tam Lead s rovnakým event_id = dedup s CAPI) */
+      try{sessionStorage.setItem('os_lead',JSON.stringify({event_id:eid,name:state.answers.name,aplikacia:state.answers.aplikacia,dekor:state.answers.dekor,termin:state.answers.termin}));}catch(e){}
+      /* /dakujeme priamo (bez 308 hopu cez dakujeme.html); lokálny http.server clean URL nepozná */
+      window.location.href=/^(localhost|127\.)/.test(location.hostname)?'dakujeme.html':'/dakujeme';
+    }
+    function fail(){
+      if(done)return;done=true;
+      sending=false;btn.disabled=false;btn.style.opacity='';btn.innerHTML=btnHTML;
+      if(errBox){
+        errBox.innerHTML=EN
+          ?'We couldn’t send your request. Please try again — or call us on <a href="tel:+421917588738">0917 588 738</a>.'
+          :'Odoslanie sa nepodarilo. Skúste to prosím znova — alebo nám zavolajte na <a href="tel:+421917588738">0917 588 738</a>.';
+        errBox.hidden=false;
+      }
+    }
+    setTimeout(succeed,20000); /* server mlčí 20 s → optimistický redirect, keepalive doručí na pozadí */
+    var p=null;
+    try{p=fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(state.answers),keepalive:true});}catch(err){}
+    if(p&&p.then)p.then(function(r){(r&&r.ok)?succeed():fail();},function(){fail();});
+    else fail();
   });
 })();
 </script>

@@ -118,7 +118,7 @@ var EN=[
   ['h','.how-sub','A simple process with clear steps — and people who understand the material.'],
   ['h','.how-step h3',['Tell us about your project','Free on-site measurement','Fabrication and installation']],
   ['h','.how-step p',[
-    '60 seconds: type, decor and approximate size. We’ll prepare a custom price estimate, usually within 24 hours.',
+    '60 seconds: type, decor and timing. We’ll prepare a custom price estimate, usually within 24 hours.',
     'We’ll come to you, measure the space precisely and fine-tune the details — decor, thickness, edges. Free of charge and with no obligation. After the measurement you’ll receive an exact quote — item by item, so you know in advance what you’re paying for.',
     'We supply the material; fabrication and installation are handled by experienced stonemasons we’ve worked with for years.']],
   ['a','.how-media figure img','alt',[
@@ -275,18 +275,6 @@ var EN=[
   ['h','#f-consent > span','I agree that Orostone may contact me about my project. No obligation, no spam.'],
   ['t','#leadForm button[type="submit"]','Get my price estimate '],
   ['t','#leadForm .reassure',' No obligation · We never share your details'],
-  ['h','#qdone h2','Thank you — we’re preparing your price.'],
-  ['h','#qdone > p','We’ll get back to you, usually within 24 hours, to confirm the details and send your custom price estimate.'],
-  ['h','#qdone .next li > span:last-child',[
-    'We’ll contact you to confirm the dimensions, decor and thickness.',
-    'We’ll prepare your <b style="color:#fff">price estimate</b> and arrange a free on-site measurement.',
-    'You can also see the slabs in person at our showroom in Bošany.']],
-  ['t','#qdone .reassure',' In a hurry? Call '],
-  ['h','.sample-card b','Want to see and touch a decor in person?'],
-  ['h','.sample-card p','We’ll send a real decor sample to your home — for <span class="price">€5.90 including delivery</span> anywhere in Slovakia.'],
-  ['h','#sampleBtn','Order a sample · €5.90'],
-  ['h','#qdone .visit p','While we prepare your price, take a look at our decors and completed projects.'],
-  ['t','#qdone .visit .cta','Visit orostone.sk '],
 
   /* ===== dakujeme.html ===== */
   ['h','.ty .eyebrow','Request received'],
@@ -464,6 +452,15 @@ function setLang(lang){
   if(lang==='en')applyEN();else restoreSK();
   cur=lang;window.OS_LANG=lang;
   try{localStorage.setItem('os_lang',lang);}catch(e){}
+  /* URL drží jazyk (?lang=en): odkaz je zdieľateľný, GA4 vie segmentovať EN sessions
+     a consent.js pri ďalšom načítaní neprepíše voľbu starým parametrom z reklamy
+     (bez tohto sa návštevník z ?lang=en reklamy po prepnutí na SK vracal do EN) */
+  try{
+    var u=new URL(location.href);
+    if(lang==='en')u.searchParams.set('lang','en');else u.searchParams.delete('lang');
+    var qs=u.searchParams.toString();
+    history.replaceState(null,'',u.pathname+(qs?'?'+qs:'')+u.hash);
+  }catch(e){}
   document.documentElement.lang=lang;
   titleMeta(lang);heroBadge(lang);realBadge(lang);footBadge(lang);quizStepLabel(lang);cookieBar(lang);tyHeading(lang);
   syncButtons(lang);

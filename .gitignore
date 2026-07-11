@@ -1,2 +1,9 @@
 .vercel
 .DS_Store
+
+# interné dokumenty a drafty — nepatria do VEREJNÉHO repa (repo je public kvôli Vercel Hobby deploy)
+CLAUDE.md
+AUDIT-*.md
+COPY-AUDIT-*.md
+RESEARCH-*.md
+email/
