@@ -58,7 +58,8 @@ var EN=[
 
   /* ===== index: Realizácie ===== */
   ['a','.real-badge','aria-label','5 years of experience — sintered stone since 2021'],
-  ['t','.real-badge textPath','Sintered stone  •  since 2021  •'],
+  /* .real-badge ma dva obluky (hore/dole) -> preklada ich realBadge() funkcia nizsie, nie
+     genericky 't' (querySelectorAll by inak nastavil OBA textPath na tu istu hodnotu) */
   ['h','.rb-in span','years'],
   ['h','#realizacie .section-head .eyebrow','Our projects'],
   ['h','#realizacie .section-head h2','Real stone in real kitchens'],
@@ -382,6 +383,40 @@ function heroBadge(lang){
   }
 }
 
+/* rotujúci „5 rokov" badge (dva symetrické oblúky) — preklad hore/dole textu.
+   Dĺžkovo tolerantné: každý oblúk je centrovaný (text-anchor middle), takže EN
+   texty inej dĺžky sa iba samy vycentrujú a badge sa nerozbije. */
+var realBadgeOrig=null;
+function realBadge(lang){
+  var tps=document.querySelectorAll('.real-badge textPath');
+  if(tps.length<2)return;
+  if(!realBadgeOrig)realBadgeOrig={a:tps[0].textContent,b:tps[1].textContent};
+  if(lang==='en'){tps[0].textContent='Sintered stone';tps[1].textContent='since 2021';}
+  else{tps[0].textContent=realBadgeOrig.a;tps[1].textContent=realBadgeOrig.b;}
+}
+
+/* rotujúci footer badge (rovnaký slogan ako hero) — EN texty dlhšie, menšie písmo */
+var footBadgeOrig=null;
+function footBadge(lang){
+  var tps=document.querySelectorAll('.foot-badge textPath');
+  if(tps.length<2)return;
+  var t1=tps[0].parentNode,t2=tps[1].parentNode;
+  if(!footBadgeOrig)footBadgeOrig={
+    a:tps[0].textContent,b:tps[1].textContent,
+    fs1:t1.getAttribute('font-size'),ls1:t1.getAttribute('letter-spacing'),
+    fs2:t2.getAttribute('font-size'),ls2:t2.getAttribute('letter-spacing')};
+  if(lang==='en'){
+    tps[0].textContent='BEAUTY OF STONE';tps[1].textContent='POWER OF TECHNOLOGY';
+    t1.setAttribute('font-size','9.5');t1.setAttribute('letter-spacing','1.6');
+    t2.setAttribute('font-size','9.5');t2.setAttribute('letter-spacing','1.6');
+  }else{
+    tps[0].textContent=footBadgeOrig.a;tps[1].textContent=footBadgeOrig.b;
+    function put(el,n,v){v==null?el.removeAttribute(n):el.setAttribute(n,v);}
+    put(t1,'font-size',footBadgeOrig.fs1);put(t1,'letter-spacing',footBadgeOrig.ls1);
+    put(t2,'font-size',footBadgeOrig.fs2);put(t2,'letter-spacing',footBadgeOrig.ls2);
+  }
+}
+
 /* „Krok 1 zo 4" v quiz lište — textové uzly okolo <b id="qnum"> */
 function quizStepLabel(lang){
   var k=document.querySelector('.ov-top .k');
@@ -430,7 +465,7 @@ function setLang(lang){
   cur=lang;window.OS_LANG=lang;
   try{localStorage.setItem('os_lang',lang);}catch(e){}
   document.documentElement.lang=lang;
-  titleMeta(lang);heroBadge(lang);quizStepLabel(lang);cookieBar(lang);tyHeading(lang);
+  titleMeta(lang);heroBadge(lang);realBadge(lang);footBadge(lang);quizStepLabel(lang);cookieBar(lang);tyHeading(lang);
   syncButtons(lang);
   /* mobilný vertikálny ticker si prepočíta výšku pásu na nové texty */
   try{window.dispatchEvent(new Event('resize'));}catch(e){}
