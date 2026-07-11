@@ -485,9 +485,11 @@ section.block{padding-top:70px;padding-bottom:70px}
 @media(min-width:960px){.real-badge{position:absolute;width:122px;height:122px;top:-8px;right:26px;margin:0}}
 .rb-ring{position:absolute;inset:0;width:100%;height:100%;animation:rb-spin 30s linear infinite;transform-origin:50% 50%}
 @keyframes rb-spin{to{transform:rotate(1turn)}}
-.rb-ring text{fill:var(--gold-dim);font-family:'Montserrat','Montserrat Fallback',sans-serif;font-weight:600;font-size:10px;letter-spacing:.23em;text-transform:uppercase}
-.rb-ring .rb-dot{fill:var(--gold-dim)}  /* symetrické oddeľovače na 9 h / 3 h (nahradili nesymetrické • v texte) */
-.rb-in{position:absolute;inset:23%;border:1px solid var(--line);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.rb-ring .rb-o{fill:none;stroke:var(--gold-dim);stroke-width:1}
+.rb-ring .rb-o2{fill:none;stroke:rgba(236,212,136,.28);stroke-width:1}
+.rb-ring text{fill:var(--gold-dim);font-family:'Montserrat','Montserrat Fallback',sans-serif;font-weight:600;font-size:7.6px;letter-spacing:.04em;text-transform:uppercase}
+.rb-ring .rb-dot{fill:var(--gold-dim)}  /* kosoštvorcové oddeľovače na 9 h / 3 h */
+.rb-in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .rb-in b{font-family:'Montserrat','Montserrat Fallback',sans-serif;font-weight:600;font-size:30px;line-height:1;color:var(--gold)}
 .rb-in span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft);margin-top:2px}
 @media(max-width:959px){.rb-in b{font-size:24px}.rb-in span{font-size:10px}}
@@ -876,6 +878,26 @@ section.block{padding-top:70px;padding-bottom:70px}
 .apps-section.s3 .island-br .pin-dot,.apps-section.s3 .island-br .pin-lines{opacity:1;transition-delay:.65s}
 .apps-section.s3 .island-br .pin-card{opacity:1;transition-delay:.8s}
 @media(prefers-reduced-motion:reduce){.island-bl,.island-br,.apps-bg{transition:none}.apps-section.s2 .island-bl,.apps-section.s3 .island-br{transform:none;opacity:1}}
+/* ── Aplikačná páska: kde všade sa dá aplikovať sinterovaný kameň (medzi FAQ a Univerzálnym využitím) ── */
+.applband{position:relative;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(236,212,136,.05),rgba(236,212,136,.018));
+  padding:clamp(20px,2.9vw,30px) 0;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.applband-track{display:inline-flex;flex-wrap:nowrap;width:max-content;will-change:transform;animation:applband-scroll 46s linear infinite}
+.applband:hover .applband-track{animation-play-state:paused}
+.applband-group{display:inline-flex;flex-wrap:nowrap;align-items:center}
+/* gap (hviezda↔text) = padding-right (text↔ďalšia hviezda) → hviezdička je vycentrovaná
+   v prázdnom priestore medzi dvomi slovami (rovnaká medzera zľava aj sprava) */
+.applband-item{display:inline-flex;align-items:center;gap:clamp(26px,3.4vw,44px);padding-right:clamp(26px,3.4vw,44px);
+  font-family:'Montserrat','Montserrat Fallback',sans-serif;font-weight:600;font-size:clamp(17px,2.55vw,29px);
+  letter-spacing:.1em;text-transform:uppercase;color:var(--light);white-space:nowrap}
+.applband-star{flex:0 0 auto;width:clamp(17px,2.2vw,26px);height:auto;color:var(--gold)}
+@keyframes applband-scroll{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@media(prefers-reduced-motion:reduce){.applband-track{animation:none}}
+/* páska ako vyvážený predel — rovnaká medzera hore aj dole (na desktope má FAQ spodný padding 92 px,
+   ale nadpis „Univerzálne využitie" sedí o 7vh nižšie → pásku o rozdiel vytiahneme hore, aby bola centrovaná) */
+@media(min-width:960px){.applband{margin-top:calc(clamp(48px,7vh,92px) - 84px)}}
 /* mobil: bez sticky — nadpis → hlavná fotka; rohové cutouty (ostrovček/doska)
    sú stavané na desktopový sticky-scroll s pinmi — bez nich pôsobia ako
    odrezané duplicitné fotky, preto sa na mobile nezobrazujú (ušetrí aj ~260 kB) */
@@ -1207,7 +1229,7 @@ section.block{padding-top:70px;padding-bottom:70px}
   <div class="wrap">
     <!-- kruhový badge — 5 rokov, rotujúci obvodový text (reduced-motion ho zastaví globálnym pravidlom) -->
     <div class="real-badge" role="img" aria-label="5 rokov skúseností — sinterovaný kameň od roku 2021" data-reveal="fade">
-      <svg class="rb-ring" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="rb-circ" d="M60,60 m-48,0 a48,48 0 1,1 96,0 a48,48 0 1,1 -96,0"/></defs><text><textPath href="#rb-circ" startOffset="25%" text-anchor="middle">Sinterovaný kameň</textPath></text><text><textPath href="#rb-circ" startOffset="75%" text-anchor="middle">od roku 2021</textPath></text><circle class="rb-dot" cx="16" cy="60" r="1.4"/><circle class="rb-dot" cx="104" cy="60" r="1.4"/></svg>
+      <svg class="rb-ring" viewBox="0 0 120 120" aria-hidden="true"><circle class="rb-o" cx="60" cy="60" r="55"/><circle class="rb-o2" cx="60" cy="60" r="38"/><defs><path id="rb-t" d="M16,60 A44,44 0 0 1 104,60" fill="none"/><path id="rb-b" d="M11,60 A49,49 0 0 0 109,60" fill="none"/></defs><text><textPath href="#rb-t" startOffset="50%" text-anchor="middle" textLength="82" lengthAdjust="spacingAndGlyphs">Sinterovaný kameň</textPath></text><text><textPath href="#rb-b" startOffset="50%" text-anchor="middle" textLength="48" lengthAdjust="spacingAndGlyphs">od roku 2021</textPath></text><rect class="rb-dot" x="12" y="58.5" width="3" height="3" transform="rotate(45 13.5 60)"/><rect class="rb-dot" x="105" y="58.5" width="3" height="3" transform="rotate(45 106.5 60)"/></svg>
       <span class="rb-in" aria-hidden="true"><b>5</b><span>rokov</span></span>
     </div>
     <div class="section-head" data-reveal-group>
@@ -1407,6 +1429,30 @@ section.block{padding-top:70px;padding-bottom:70px}
         <summary>Kde si viem materiál pozrieť naživo?<span class="plus" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <p class="faq-a">V showroome v renesančnom kaštieli v Bošanoch — dekory aj reálne platne si tam pozriete a chytíte naživo.</p>
       </details>
+    </div>
+  </div>
+</section>
+
+<!-- Aplikačná páska: kde všade sa dá aplikovať sinterovaný kameň (bežiaci text so 4-cípymi hviezdičkami) -->
+<section class="applband" aria-label="Kde všade sa dá aplikovať sinterovaný kameň">
+  <div class="applband-track">
+    <div class="applband-group">
+      <span class="applband-item"><svg class="applband-star" viewBox="-6 -6 12 12" fill="currentColor" aria-hidden="true"><path d="M0 -5 L1.5 -1.5 L5 0 L1.5 1.5 L0 5 L-1.5 1.5 L-5 0 L-1.5 -1.5 Z"/></svg>Kuchynská pracovná doska</span>
+      <span class="applband-item"><svg class="applband-star" viewBox="-6 -6 12 12" fill="currentColor" aria-hidden="true"><path d="M0 -5 L1.5 -1.5 L5 0 L1.5 1.5 L0 5 L-1.5 1.5 L-5 0 L-1.5 -1.5 Z"/></svg>Zástena</span>
+      <span class="applband-item"><svg class="applband-star" viewBox="-6 -6 12 12" fill="currentColor" aria-hidden="true"><path d="M0 -5 L1.5 -1.5 L5 0 L1.5 1.5 L0 5 L-1.5 1.5 L-5 0 L-1.5 -1.5 Z"/></svg>Ostrovček</span>
+      <span class="applband-item"><svg class="applband-star" viewBox="-6 -6 12 12" fill="currentColor" aria-hidden="true"><path d="M0 -5 L1.5 -1.5 L5 0 L1.5 1.5 L0 5 L-1.5 1.5 L-5 0 L-1.5 -1.5 Z"/></svg>Bočnica ostrovčeka</span>
+      <span class="applband-item"><svg class="applband-star" viewBox="-6 -6 12 12" fill="currentColor" aria-hidden="true"><path d="M0 -5 L1.5 -1.5 L5 0 L1.5 1.5 L0 5 L-1.5 1.5 L-5 0 L-1.5 -1.5 Z"/></svg>Kúpeľňová doska</span>
+      <span class="applband-item"><svg class="applband-star" viewBox="-6 -6 12 12" fill="currentColor" aria-hidden="true"><path d="M0 -5 L1.5 -1.5 L5 0 L1.5 1.5 L0 5 L-1.5 1.5 L-5 0 L-1.5 -1.5 Z"/></svg>Obklad steny</span>
+      <span class="applband-item"><svg class="applband-star" viewBox="-6 -6 12 12" fill="currentColor" aria-hidden="true"><path d="M0 -5 L1.5 -1.5 L5 0 L1.5 1.5 L0 5 L-1.5 1.5 L-5 0 L-1.5 -1.5 Z"/></svg>Parapety</span>
+    </div>
+    <div class="applband-group" aria-hidden="true">
+      <span class="applband-item"><svg class="applband-star" viewBox="-6 -6 12 12" fill="currentColor" aria-hidden="true"><path d="M0 -5 L1.5 -1.5 L5 0 L1.5 1.5 L0 5 L-1.5 1.5 L-5 0 L-1.5 -1.5 Z"/></svg>Kuchynská pracovná doska</span>
+      <span class="applband-item"><svg class="applband-star" viewBox="-6 -6 12 12" fill="currentColor" aria-hidden="true"><path d="M0 -5 L1.5 -1.5 L5 0 L1.5 1.5 L0 5 L-1.5 1.5 L-5 0 L-1.5 -1.5 Z"/></svg>Zástena</span>
+      <span class="applband-item"><svg class="applband-star" viewBox="-6 -6 12 12" fill="currentColor" aria-hidden="true"><path d="M0 -5 L1.5 -1.5 L5 0 L1.5 1.5 L0 5 L-1.5 1.5 L-5 0 L-1.5 -1.5 Z"/></svg>Ostrovček</span>
+      <span class="applband-item"><svg class="applband-star" viewBox="-6 -6 12 12" fill="currentColor" aria-hidden="true"><path d="M0 -5 L1.5 -1.5 L5 0 L1.5 1.5 L0 5 L-1.5 1.5 L-5 0 L-1.5 -1.5 Z"/></svg>Bočnica ostrovčeka</span>
+      <span class="applband-item"><svg class="applband-star" viewBox="-6 -6 12 12" fill="currentColor" aria-hidden="true"><path d="M0 -5 L1.5 -1.5 L5 0 L1.5 1.5 L0 5 L-1.5 1.5 L-5 0 L-1.5 -1.5 Z"/></svg>Kúpeľňová doska</span>
+      <span class="applband-item"><svg class="applband-star" viewBox="-6 -6 12 12" fill="currentColor" aria-hidden="true"><path d="M0 -5 L1.5 -1.5 L5 0 L1.5 1.5 L0 5 L-1.5 1.5 L-5 0 L-1.5 -1.5 Z"/></svg>Obklad steny</span>
+      <span class="applband-item"><svg class="applband-star" viewBox="-6 -6 12 12" fill="currentColor" aria-hidden="true"><path d="M0 -5 L1.5 -1.5 L5 0 L1.5 1.5 L0 5 L-1.5 1.5 L-5 0 L-1.5 -1.5 Z"/></svg>Parapety</span>
     </div>
   </div>
 </section>

@@ -152,6 +152,12 @@ var EN=[
     'Yes — a hot pot or pan can go straight onto the worktop. The surface is also highly scratch-resistant in everyday use. We’d still suggest a chopping board, though — more for your knives’ sake than the stone’s.',
     'At our showroom in a Renaissance manor in Bošany — you can see and touch the decors and full-size slabs for yourself.']],
 
+  /* ===== index: Aplikačná páska (bežiaci text) ===== */
+  ['a','.applband','aria-label','Where sintered stone can be applied'],
+  ['t','.applband-item',[
+    'Kitchen worktop','Splashback','Kitchen island','Island side panel','Bathroom vanity top','Wall cladding','Window sills',
+    'Kitchen worktop','Splashback','Kitchen island','Island side panel','Bathroom vanity top','Wall cladding','Window sills']],
+
   /* ===== index: Aplikácie ===== */
   ['h','.apps-head .eyebrow','Versatile applications'],
   ['h','.apps-head h2','One stone. The whole kitchen.'],
