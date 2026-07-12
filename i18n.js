@@ -26,7 +26,9 @@
 var EN=[
   /* header (obe stránky) */
   ['a','.brand','aria-label','Orostone — home page'],
-  ['h','.hdr-showroom > span','<b>Showroom</b> · Renaissance manor, Bošany'],
+  ['h','.hdr-showroom > span:not(.hdr-showroom-pop)','<b>Showroom</b> · Renaissance manor, Bošany'],
+  ['t','.hdr-showroom-pop .hsp-cap','Renaissance manor · Bošany'],
+  ['a','.hdr-showroom-pop img','alt','Renaissance manor in Bošany — Orostone showroom'],
 
   /* ===== index: HERO ===== */
   ['h','.hero-copy .eyebrow','Sintered stone worktops'],
