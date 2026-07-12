@@ -364,9 +364,12 @@ h1,h2,h3,.serif{font-family:'Montserrat','Montserrat Fallback',sans-serif;font-w
 /* desktop: hero + USP band spolu = 1 obrazovka (USP above the fold) */
 @media(min-width:1025px){.hero{min-height:calc(100vh - var(--bandh))}}
 @media(max-width:640px){.hero{min-height:100vh;min-height:100svh;justify-content:flex-start;padding:100px 0 32px}.hero-inner{flex:1 1 auto;align-items:stretch}.hero-bg{object-position:center 80%}.hero-scrim{background:linear-gradient(180deg,rgba(19,19,18,.97) 0%,rgba(19,19,18,.92) 30%,rgba(19,19,18,.6) 52%,rgba(19,19,18,.18) 74%,transparent 100%)}.hero-cta-row .cta{width:100%}.hero-usp{display:flex;flex-wrap:wrap;gap:10px 14px}.hu-item{gap:9px;font-size:13.5px;text-shadow:0 1px 10px rgba(19,19,18,.55)}.hu-ic{width:34px;height:34px}.hu-ic svg{width:15px;height:15px}
-  /* CTA vyššie na mobile; ikony na koniec pod technický odsek, vycentrované medzi textom a pätou hero sekcie */
+  /* CTA vyššie na mobile; technický odsek skrytý — sivý text ležal na svetlom mramore (nečitateľný) a prekrýval fotku; obsah sa opakuje nižšie (USP chipy, benefity, sekcia o materiáli). Ikony vycentrované medzi textom a pätou hero sekcie */
   .hero-copy{display:flex;flex-direction:column}
-  .hero-copy p.lead:last-of-type{order:3;margin-bottom:0}
+  .hero-copy p.lead:last-of-type{display:none}
+  /* rating leží na svetlom mramore → tieň + plná svetlá na drobnom texte */
+  .hero-rating .rating{text-shadow:0 1px 10px rgba(19,19,18,.55)}
+  .hero-rating .rating small{color:var(--light)}
   .hero-usp{order:4;margin-top:auto;margin-bottom:auto;padding-top:32px}
 }
 /* užšie displeje: chipy sa môžu lámať pod seba — deliaca čiarka by visela na konci riadku */
