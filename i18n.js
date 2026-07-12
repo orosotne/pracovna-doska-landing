@@ -31,8 +31,8 @@ var EN=[
   ['a','.hdr-showroom-pop img','alt','Renaissance manor in Bošany — Orostone showroom'],
 
   /* ===== index: HERO ===== */
-  ['h','.hero-copy .eyebrow','Sintered stone worktops'],
-  ['h','.hero h1','Get a custom price estimate for your worktop <em style="font-style:italic;white-space:nowrap">today.</em>'],
+  ['h','.hero-copy .eyebrow','Sintered stone'],
+  ['h','.hero h1','Get a <em style="font-style:italic;white-space:nowrap">price estimate</em> for your worktop.'],
   ['h','.hero-copy p.lead',[
     '<strong>Four short questions, done in 60 seconds.</strong>',
     'We’ll usually get back to you by the next business day with a no-obligation price estimate, a decor recommendation and advice on what will work best in your kitchen.',
