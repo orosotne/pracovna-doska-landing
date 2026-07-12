@@ -1158,8 +1158,11 @@ section.block{padding-top:70px;padding-bottom:70px}
     <img class="hero-bg" src="img/hero-statuario.webp" alt="Kuchynský ostrov a zástena zo sinterovaného kameňa Bianco Statuario" fetchpriority="high" />
   </picture>
   <div class="hero-scrim" aria-hidden="true"></div>
-  <!-- Značková die-cut pečať (KRÁSA KAMEŇA · SILA TECHNOLÓGIE) — zdieľané tvary pre hero + footer odznak.
-       #hsSeal = statický stred (béžový disk + kamenná doska), #hsRing = rotujúci prstenec s textom a hviezdami -->
+  <!-- Značková die-cut pečať — zdieľané tvary pre hero + footer odznak.
+       #hsSeal = statický stred (béžový disk + kamenná doska; zlatý kruh sa NEtočí),
+       #hsRing = rotujúci prstenec SK ("KRÁSA KAMEŇA · SILA TECHNOLÓGIE"),
+       #hsRingEN = rotujúci prstenec EN ("STONE BEAUTY MEETS TECHNOLOGY"); i18n.js
+       prepína <use href> medzi nimi podľa jazyka — stred aj mechanika rotácie ostávajú -->
   <svg class="brand-seal-defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
     <g id="hsSeal">
       <circle cx="42.52" cy="42.49" r="27.05" fill="#eed78c"/>
@@ -1198,6 +1201,40 @@ section.block{padding-top:70px;padding-bottom:70px}
       </g>
       <path fill="#eed78c" d="M8.23,34.42l.65,2.71c.17.7.63,1.29,1.27,1.62l2.48,1.27-2.71.65c-.7.17-1.29.63-1.62,1.27l-1.27,2.48-.65-2.71c-.17-.7-.63-1.29-1.27-1.62l-2.48-1.27,2.71-.65c.7-.17,1.29-.63,1.62-1.27l1.27-2.48Z"/>
       <path fill="#eed78c" d="M76.47,33.51l-.65,2.71c-.17.7-.63,1.29-1.27,1.62l-2.48,1.27,2.71.65c.7.17,1.29.63,1.62,1.27l1.27,2.48.65-2.71c.17-.7.63-1.29,1.27-1.62l2.48-1.27-2.71-.65c-.7-.17-1.29-.63-1.62-1.27l-1.27-2.48Z"/>
+    </g>
+    <!-- EN prstenec: "STONE BEAUTY MEETS TECHNOLOGY" — text biely (#F9F9F7 ako SK), hviezdy zlaté;
+         stred (#hsSeal) ostáva statický, točí sa iba tento prstenec -->
+    <g id="hsRingEN" fill="#F9F9F7" font-family="'Montserrat','Montserrat Fallback',sans-serif" font-size="8.4">
+      <path fill="#eed78c" d="M9.07,31.49l.53,2.73c.14.7.57,1.31,1.2,1.67l2.42,1.38-2.73.53c-.7.14-1.31.57-1.67,1.2l-1.38,2.42-.53-2.73c-.14-.7-.57-1.31-1.2-1.67l-2.42-1.38,2.73-.53c.7-.14,1.31-.57,1.67-1.2l1.38-2.42Z"/>
+      <path fill="#eed78c" d="M76.04,31.47l-.57,2.72c-.15.7-.59,1.31-1.22,1.65l-2.44,1.34,2.72.57c.7.15,1.31.59,1.65,1.22l1.34,2.44.57-2.72c.15-.7.59-1.31,1.22-1.65l2.44-1.34-2.72-.57c-.7-.15-1.31-.59-1.65-1.22l-1.34-2.44Z"/>
+      <text transform="translate(74.56 44.31) rotate(100.35)">M</text>
+      <text transform="translate(72.94 52.34) rotate(113.01)">E</text>
+      <text transform="translate(70.59 57.8) rotate(123.7)">E</text>
+      <text transform="translate(67.25 62.7) rotate(133.59)">T</text>
+      <text transform="translate(63.73 66.38) rotate(142.99)">S</text>
+      <text transform="translate(56.87 71.03) rotate(157.6)">T</text>
+      <text transform="translate(52.12 72.99) rotate(167.63)">E</text>
+      <text transform="translate(46.36 74.25) rotate(178.55)">C</text>
+      <text transform="translate(40.09 74.43) rotate(-169.6)">H</text>
+      <text transform="translate(33.18 73.14) rotate(-156.9)">N</text>
+      <text transform="translate(26.71 70.36) rotate(-144.07)">O</text>
+      <text transform="translate(20.86 65.96) rotate(-132.87)">L</text>
+      <text transform="translate(17.32 62.28) rotate(-121.89)">O</text>
+      <text transform="translate(13.54 56.09) rotate(-109.31)">G</text>
+      <text transform="translate(11.37 49.66) rotate(-98.1)">Y</text>
+      <g font-weight="700">
+        <text transform="translate(13.3 29.53) rotate(-61.14)">S</text>
+        <text transform="translate(16.2 24.38) rotate(-50.64)">T</text>
+        <text transform="translate(19.81 19.89) rotate(-38.81)">O</text>
+        <text transform="translate(25.75 15.21) rotate(-25.55)">N</text>
+        <text transform="translate(32.34 12.18) rotate(-13.44)">E</text>
+        <text transform="translate(41.57 10.5) rotate(4.03)">B</text>
+        <text transform="translate(48.5 11.08) rotate(15.81)">E</text>
+        <text transform="translate(54.41 12.76) rotate(27.77)">A</text>
+        <text transform="translate(60.55 16.04) rotate(40.21)">U</text>
+        <text transform="translate(65.84 20.65) rotate(51.62)">T</text>
+        <text transform="translate(69.4 25.17) rotate(62.36)">Y</text>
+      </g>
     </g>
   </defs></svg>
 

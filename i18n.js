@@ -355,26 +355,11 @@ function restoreSK(){
   }
 }
 
-/* rotujúci hero badge (SVG textPath) — EN texty sú dlhšie, preto menšie písmo */
-var badgeOrig=null;
+/* rotujúci hero badge — prepnutie prstenca podľa jazyka: SK #hsRing / EN #hsRingEN.
+   Stred pečate (#hsSeal, zlatý kruh) je samostatný <use> a NEmení sa — točí sa iba text. */
 function heroBadge(lang){
-  var tps=document.querySelectorAll('.hero-badge textPath');
-  if(tps.length<2)return;
-  var t1=tps[0].parentNode,t2=tps[1].parentNode;
-  if(!badgeOrig)badgeOrig={
-    a:tps[0].textContent,b:tps[1].textContent,
-    fs1:t1.getAttribute('font-size'),ls1:t1.getAttribute('letter-spacing'),
-    fs2:t2.getAttribute('font-size'),ls2:t2.getAttribute('letter-spacing')};
-  if(lang==='en'){
-    tps[0].textContent='BEAUTY OF STONE';tps[1].textContent='POWER OF TECHNOLOGY';
-    t1.setAttribute('font-size','9.5');t1.setAttribute('letter-spacing','1.6');
-    t2.setAttribute('font-size','9.5');t2.setAttribute('letter-spacing','1.6');
-  }else{
-    tps[0].textContent=badgeOrig.a;tps[1].textContent=badgeOrig.b;
-    function put(el,n,v){v==null?el.removeAttribute(n):el.setAttribute(n,v);}
-    put(t1,'font-size',badgeOrig.fs1);put(t1,'letter-spacing',badgeOrig.ls1);
-    put(t2,'font-size',badgeOrig.fs2);put(t2,'letter-spacing',badgeOrig.ls2);
-  }
+  var u=document.querySelector('.hero-badge .hb-ring use');
+  if(u)u.setAttribute('href',lang==='en'?'#hsRingEN':'#hsRing');
 }
 
 /* rotujúci „5 rokov" badge (dva symetrické oblúky) — preklad hore/dole textu.
@@ -389,26 +374,10 @@ function realBadge(lang){
   else{tps[0].textContent=realBadgeOrig.a;tps[1].textContent=realBadgeOrig.b;}
 }
 
-/* rotujúci footer badge (rovnaký slogan ako hero) — EN texty dlhšie, menšie písmo */
-var footBadgeOrig=null;
+/* rotujúci footer badge (mobile, rovnaký slogan ako hero) — prepnutie prstenca SK/EN */
 function footBadge(lang){
-  var tps=document.querySelectorAll('.foot-badge textPath');
-  if(tps.length<2)return;
-  var t1=tps[0].parentNode,t2=tps[1].parentNode;
-  if(!footBadgeOrig)footBadgeOrig={
-    a:tps[0].textContent,b:tps[1].textContent,
-    fs1:t1.getAttribute('font-size'),ls1:t1.getAttribute('letter-spacing'),
-    fs2:t2.getAttribute('font-size'),ls2:t2.getAttribute('letter-spacing')};
-  if(lang==='en'){
-    tps[0].textContent='BEAUTY OF STONE';tps[1].textContent='POWER OF TECHNOLOGY';
-    t1.setAttribute('font-size','9.5');t1.setAttribute('letter-spacing','1.6');
-    t2.setAttribute('font-size','9.5');t2.setAttribute('letter-spacing','1.6');
-  }else{
-    tps[0].textContent=footBadgeOrig.a;tps[1].textContent=footBadgeOrig.b;
-    function put(el,n,v){v==null?el.removeAttribute(n):el.setAttribute(n,v);}
-    put(t1,'font-size',footBadgeOrig.fs1);put(t1,'letter-spacing',footBadgeOrig.ls1);
-    put(t2,'font-size',footBadgeOrig.fs2);put(t2,'letter-spacing',footBadgeOrig.ls2);
-  }
+  var u=document.querySelector('.foot-badge .hb-ring use');
+  if(u)u.setAttribute('href',lang==='en'?'#hsRingEN':'#hsRing');
 }
 
 /* „Krok 1 zo 4" v quiz lište — textové uzly okolo <b id="qnum"> */
