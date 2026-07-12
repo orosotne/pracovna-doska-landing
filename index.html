@@ -26,7 +26,8 @@
 <!-- Montserrat je firemný font, self-hostovaný (GDPR, bez Google Fonts CDN) — @font-face nižšie v <style> -->
 <link rel="preload" href="/fonts/montserrat/montserrat-latin-ext.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/montserrat/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="preload" href="img/hero-statuario.webp" as="image" fetchpriority="high" />
+<link rel="preload" href="img/hero-statuario-mobile.webp" as="image" media="(max-width:640px)" fetchpriority="high" />
+<link rel="preload" href="img/hero-statuario.webp" as="image" media="(min-width:641px)" fetchpriority="high" />
 
 <!-- ================= SCHEMA.ORG JSON-LD (SEO + GEO/AEO) =================
      LocalBusiness + WebSite/WebPage + Service + FAQPage (FAQ = presne otázky
@@ -1149,7 +1150,10 @@ section.block{padding-top:70px;padding-bottom:70px}
 <main>
 <!-- HERO -->
 <section class="hero">
-  <img class="hero-bg" src="img/hero-statuario.webp" alt="Kuchynský ostrov a zástena zo sinterovaného kameňa Bianco Statuario" fetchpriority="high" />
+  <picture>
+    <source media="(max-width:640px)" srcset="img/hero-statuario-mobile.webp" />
+    <img class="hero-bg" src="img/hero-statuario.webp" alt="Kuchynský ostrov a zástena zo sinterovaného kameňa Bianco Statuario" fetchpriority="high" />
+  </picture>
   <div class="hero-scrim" aria-hidden="true"></div>
   <!-- Značková die-cut pečať (KRÁSA KAMEŇA · SILA TECHNOLÓGIE) — zdieľané tvary pre hero + footer odznak.
        #hsSeal = statický stred (béžový disk + kamenná doska), #hsRing = rotujúci prstenec s textom a hviezdami -->
