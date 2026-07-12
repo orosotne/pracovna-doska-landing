@@ -204,7 +204,7 @@ var EN=[
 
   /* ===== index: Final CTA ===== */
   ['h','.finalcta .eyebrow','Next step'],
-  ['h','.finalcta h2','Find out what your worktop would cost'],
+  ['h','.finalcta h2','Find out what your sintered stone worktop would cost'],
   ['h','.finalcta .band > p','Tell us about your project in 60 seconds and we’ll prepare your custom price estimate. No obligation, usually by the next business day.'],
 
   /* ===== index: pätička ===== */
