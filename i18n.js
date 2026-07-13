@@ -369,6 +369,10 @@ function heroBadge(lang){
    texty inej dĺžky sa iba samy vycentrujú a badge sa nerozbije. */
 var realBadgeOrig=null;
 function realBadge(lang){
+  /* SK = dizajnový emblém (img.rb-emblem, nesie SK text), EN = rotujúci prstenec nižšie.
+     Trieda .en na .real-badge prepína cez CSS ktorý variant sa zobrazí. */
+  var rb=document.querySelector('.real-badge');
+  if(rb)rb.classList.toggle('en',lang==='en');
   var tps=document.querySelectorAll('.real-badge textPath');
   if(tps.length<2)return;
   if(!realBadgeOrig)realBadgeOrig={a:tps[0].textContent,b:tps[1].textContent};

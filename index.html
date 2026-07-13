@@ -503,6 +503,19 @@ section.block{padding-top:70px;padding-bottom:70px}
 .tile .cap em{display:block;font-style:normal;font-size:11px;letter-spacing:.02em;color:var(--muted-2);margin-top:3px}
 .real-badge{position:relative;width:96px;height:96px;margin:0 auto 22px;pointer-events:none}
 @media(min-width:960px){.real-badge{position:absolute;width:122px;height:122px;top:-8px;right:26px;margin:0}}
+/* SK zobrazuje dizajnový emblém (statický, nesie SK text), EN pôvodný rotujúci prstenec.
+   Default (bez .en) = SK; realBadge() pridá .en pri prepnutí na angličtinu. */
+.rb-emblem{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.real-badge.en .rb-emblem{display:none}
+.real-badge:not(.en) .rb-ring,.real-badge:not(.en) .rb-in{display:none}
+/* Emblém „5 rokov" sa pri doscrollovaní jemne objaví (scale + fade, bez rotácie) — mobil aj desktop.
+   Hlavný reveal-engine je len desktop, preto má emblém vlastný trigger: triedu .rb-seen pridá
+   dedikovaný IntersectionObserver keď badge vstúpi do záberu. Skrytý štart žije IBA keď je JS
+   (html.js) a povolený pohyb → bez JS / reduced-motion emblém ostáva plne viditeľný. */
+@media (prefers-reduced-motion:no-preference){
+  html.js .real-badge .rb-emblem{opacity:0;transform:translateY(8px) scale(.84);transition:opacity .7s var(--ease),transform .85s var(--ease);will-change:opacity,transform}
+  html.js .real-badge.rb-seen .rb-emblem{opacity:1;transform:none}
+}
 .rb-ring{position:absolute;inset:0;width:100%;height:100%;animation:rb-spin 30s linear infinite;transform-origin:50% 50%}
 @keyframes rb-spin{to{transform:rotate(1turn)}}
 .rb-ring .rb-o{fill:none;stroke:var(--gold-dim);stroke-width:1}
@@ -1323,6 +1336,8 @@ section.block{padding-top:70px;padding-bottom:70px}
   <div class="wrap">
     <!-- kruhový badge — 5 rokov, rotujúci obvodový text (reduced-motion ho zastaví globálnym pravidlom) -->
     <div class="real-badge" role="img" aria-label="5 rokov skúseností — sinterovaný kameň od roku 2021" data-reveal="fade">
+      <!-- SK: dizajnový emblém (nesie SK text). EN: rotujúci prstenec nižšie, ktorý i18n prekladá; prepínač rieši trieda .en cez realBadge() -->
+      <img class="rb-emblem" src="img/5-rokov-skusenosti.svg" alt="" width="122" height="122" loading="lazy" decoding="async" />
       <svg class="rb-ring" viewBox="0 0 120 120" aria-hidden="true"><circle class="rb-o" cx="60" cy="60" r="55"/><circle class="rb-o2" cx="60" cy="60" r="38"/><defs><path id="rb-t" d="M16,60 A44,44 0 0 1 104,60" fill="none"/><path id="rb-b" d="M11,60 A49,49 0 0 0 109,60" fill="none"/></defs><text><textPath href="#rb-t" startOffset="50%" text-anchor="middle" textLength="82" lengthAdjust="spacingAndGlyphs">Sinterovaný kameň</textPath></text><text><textPath href="#rb-b" startOffset="50%" text-anchor="middle" textLength="48" lengthAdjust="spacingAndGlyphs">od roku 2021</textPath></text><rect class="rb-dot" x="12" y="58.5" width="3" height="3" transform="rotate(45 13.5 60)"/><rect class="rb-dot" x="105" y="58.5" width="3" height="3" transform="rotate(45 106.5 60)"/></svg>
       <span class="rb-in" aria-hidden="true"><b>5</b><span>rokov</span></span>
     </div>
@@ -2174,6 +2189,20 @@ section.block{padding-top:70px;padding-bottom:70px}
   window.addEventListener('resize',onScroll);
   window.addEventListener('pageshow',check);   /* bfcache/back-nav restore so mid-scroll obsah nezostane skrytý */
   check();   /* úvodná kontrola — odhalí hero a čokoľvek nad záhybom hneď */
+})();
+</script>
+
+<!-- Emblém „5 rokov" — reveal pri doscrollovaní na VŠETKÝCH šírkach (hlavný engine vyššie na mobile
+     nič neanimuje). Bez pohybu / bez IntersectionObserver → rovno zobraz (žiadny skrytý stav neuviazne). -->
+<script>
+(function(){
+  var b=document.querySelector('.real-badge');if(!b)return;
+  var mm=window.matchMedia;
+  if((mm&&mm('(prefers-reduced-motion:reduce)').matches)||!('IntersectionObserver'in window)){b.classList.add('rb-seen');return;}
+  var io=new IntersectionObserver(function(es){
+    for(var i=0;i<es.length;i++){ if(es[i].isIntersecting){ b.classList.add('rb-seen'); io.disconnect(); break; } }
+  },{threshold:.35});
+  io.observe(b);
 })();
 </script>
 
