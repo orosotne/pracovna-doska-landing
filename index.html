@@ -139,6 +139,16 @@
      lišta (consent.js) umožňuje Odmietnuť — vtedy sa tracking vypne
      a meracie cookies sa zmažú. -->
 <script src="/consent.js"></script>
+<!-- Google Tag Manager — načítaný AŽ po consent.js, aby Consent Mode v2 default bežal prvý.
+     ⚠️ GTM používať LEN na Google Ads konverzie. GA4 aj Meta Pixel bežia natívne nižšie v tomto
+     <head> — do GTM NEPRIDÁVAŤ GA4 config/event tag, inak sa GA4 počíta 2×. Konverziu naviazať
+     na Custom Event trigger "generate_lead" (event už je v dataLayer na /dakujeme, vrátane event_id). -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WVQWKLMZ');</script>
+<!-- End Google Tag Manager -->
 <script>
 /* === KONFIG — jediné miesto, kde treba niečo doplniť/upraviť =========== */
 window.OS_CFG = {
@@ -1128,6 +1138,10 @@ section.block{padding-top:70px;padding-bottom:70px}
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WVQWKLMZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <!-- Meta Pixel noscript fallback — v <body>, lebo <noscript> s <img> nie je v <head> validný -->
 <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=712209907542673&amp;ev=PageView&amp;noscript=1"/></noscript>
 
@@ -2087,13 +2101,21 @@ section.block{padding-top:70px;padding-bottom:70px}
   var OS_RENDER_TS=Date.now(); /* čas načítania stránky — server (/api/lead) odmietne odoslanie rýchlejšie než 3 s = bot */
   var form=document.getElementById('leadForm');
   var elN=document.getElementById('in-name'),elE=document.getElementById('in-email'),elP=document.getElementById('in-phone'),elC=document.getElementById('in-consent');
-  var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, phoneRe=/^[+()0-9\s-]{6,}$/;
+  var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  /* Telefón NEPOVINNÝ, ale ak je vyplnený, musí to byť reálne číslo: 9–14 číslic
+     (SK 0917… = 10, medzinárodné +421…/české/rakúske až 14, EN verzia = cudzinci).
+     Odmietne „00000" (málo číslic) aj „0000000000" (samé rovnaké). */
+  function phoneOk(v){v=v.trim();if(v==='')return true;
+    if(!/^[+()0-9\s-]+$/.test(v))return false;
+    var d=v.replace(/\D/g,'');
+    if(/^(\d)\1+$/.test(d))return false;
+    return d.length>=9&&d.length<=14;}
   function bad(id,v){var f=document.getElementById(id);f.classList.toggle('bad',v);
     var inp=f.querySelector('input');if(inp)inp.setAttribute('aria-invalid',v?'true':'false');}
   var sending=false;
   form.addEventListener('submit',function(e){e.preventDefault();
     if(sending)return;
-    var okN=elN.value.trim().length>=2, okE=emailRe.test(elE.value.trim()), okP=elP.value.trim()===''||phoneRe.test(elP.value.trim()), okC=elC.checked;
+    var okN=elN.value.trim().length>=2, okE=emailRe.test(elE.value.trim()), okP=phoneOk(elP.value), okC=elC.checked;
     bad('f-name',!okN);bad('f-email',!okE);bad('f-phone',!okP);document.getElementById('f-consent').classList.toggle('bad',!okC);
     if(!(okN&&okE&&okP&&okC)){
       /* fokus na prvé neplatné pole — screen reader prečíta label + chybovú hlášku (aria-describedby) */

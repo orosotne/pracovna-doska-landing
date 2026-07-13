@@ -191,6 +191,15 @@ export default async function handler(req, res) {
     if (name && !/\p{L}{2,}/u.test(name)) return drop(res, 'name-gibberish'); // \p{L} = any-script letters
   }
 
+  // Telefón (nepovinný): ak je vyplnený a je zjavný junk (zlý počet číslic alebo samé rovnaké
+  // číslice), lead NEZAHODÍME — len telefón vyprázdnime, nech obchod nevolá fake číslo.
+  // Fail-open: reálny lead s platným e-mailom nesmie spadnúť kvôli preklepu v telefóne.
+  // (Klient tú istú kontrolu robí pred odoslaním; toto je poistka proti priamemu POSTu.)
+  if (data.phone) {
+    const pd = String(data.phone).replace(/\D/g, '');
+    if (pd.length < 9 || pd.length > 14 || /^(\d)\1+$/.test(pd)) data.phone = '';
+  }
+
   // Strip control-only + client-forgeable fields, tag, forward to Make.
   const {
     website, form_render_ts, form_elapsed_ms, js_ok,
