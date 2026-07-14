@@ -769,6 +769,7 @@ section.block{padding-top:70px;padding-bottom:70px}
 @keyframes slabspin{from{transform:perspective(1600px) rotateX(-7deg) rotateY(0)}to{transform:perspective(1600px) rotateX(-7deg) rotateY(360deg)}}
 .slab-dim{margin-top:14px;font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted-2);text-align:center}
 .slab-dim b{color:var(--gold-soft);font-weight:600;letter-spacing:.03em}
+.slab-dim-t::before{content:", "}
 .madeof-facts{display:grid;grid-template-columns:repeat(4,1fr);margin-top:50px}
 .mfact{padding:4px 26px;border-left:1px solid var(--line-soft)}
 .mfact:first-child{border-left:none;padding-left:0}
@@ -863,7 +864,11 @@ section.block{padding-top:70px;padding-bottom:70px}
 @media(max-width:900px){.mstickers{display:none}   /* dekoratívne — na mobile skryté, doska + fakty ostávajú */
   /* scéna je na užších displejoch na minime (384px) a rotujúca spodná hrana
      vykývne ~15px pod ňu — väčší odstup, nech nezasahuje do popisu rozmeru */
-  .slab-dim{margin-top:28px}}
+  .slab-dim{margin-top:28px}
+  /* mobil: rozmer na 1. riadok, popis na 2. riadok (čiarka sa skryje) */
+  .slab-dim b,.slab-dim-t{display:block}
+  .slab-dim-t{margin-top:4px}
+  .slab-dim-t::before{content:none}}
 
 /* FINAL CTA BAND — fotka na pozadí + tmavý scrim (text zostáva čitateľný) */
 .finalcta{position:relative;overflow:hidden}
@@ -1456,7 +1461,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="msticker ms-4"><img class="pin" src="icons/sym-doska.svg" alt="" /><b>Doska</b></div>
         </div>
       </div>
-      <div class="slab-dim"><b>1600 × 3200 × 12 mm</b>, jedna veľkoformátová doska</div>
+      <div class="slab-dim"><b>1600 × 3200 × 12 mm</b><span class="slab-dim-t">jedna veľkoformátová doska</span></div>
     </div>
     <div class="madeof-facts" data-proc data-anim data-reveal-group>
       <div class="mfact"><span class="mf-ic" aria-hidden="true"><img src="icons/sym-mineraly-solid.svg" alt="" width="46" height="46" loading="lazy" decoding="async" /></span><span class="mf-n">01</span><b>Prírodné minerály</b><p>Kremeň, prírodný piesok, íly a minerálne oxidy, bez živíc a plastových spojív.</p></div>

@@ -106,7 +106,7 @@ var EN=[
   ['h','.madeof .section-head p','Sintered stone isn’t synthetic. It’s made entirely of natural minerals, formed by a process that mirrors how stone is created in nature, just far faster. You may also see it sold as porcelain or ceramic stone; either way, it contains no resins or plastics.'],
   ['a','.slab','aria-label','Rotating sintered stone slab, 1600 × 3200 × 12 mm'],
   ['h','.msticker b',['Minerals','Pressure','Heat','Slab']],
-  ['h','.slab-dim','<b>1600 × 3200 × 12 mm</b>, one large-format slab'],
+  ['h','.slab-dim','<b>1600 × 3200 × 12 mm</b><span class="slab-dim-t">one large-format slab</span>'],
   ['h','.mfact b',['Natural minerals','Immense pressure','Sintered by heat','Large format']],
   ['h','.mfact p',[
     'Quartz, natural sand, clays and mineral oxides, no resins or plastic binders.',
