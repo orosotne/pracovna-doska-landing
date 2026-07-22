@@ -35,7 +35,9 @@ const TURNSTILE_SECRET = process.env.TURNSTILE_SECRET || '';
 const CAPI_ACCESS_TOKEN = process.env.CAPI_ACCESS_TOKEN || '';
 const CAPI_PIXEL_IDS = (process.env.CAPI_PIXEL_IDS || '712209907542673')
   .split(',').map((s) => s.trim()).filter(Boolean);
-const EXPECTED_HOSTNAME = 'pracovnadoska.orostone.sk';
+// Nová doména + stará (308-uje na novú); počas prechodu musí Turnstile prijať obe,
+// inak by sa reálne leady zahadzovali ako 'turnstile-fail'.
+const ALLOWED_HOSTNAMES = ['oro-klient.orostone.sk', 'pracovnadoska.orostone.sk'];
 const EXPECTED_ACTION = 'lp2_lead';
 const FETCH_TIMEOUT_MS = 6000;
 
@@ -88,7 +90,7 @@ async function sendCapiLead(lead, req) {
     event_name: 'Lead',
     event_time: Math.floor(Date.now() / 1000),
     event_id: String(lead.event_id),
-    event_source_url: String(lead.landing_url || 'https://pracovnadoska.orostone.sk/'),
+    event_source_url: String(lead.landing_url || 'https://oro-klient.orostone.sk/'),
     action_source: 'website',
     user_data: capiUserData(lead, req),
     custom_data: { content_name: 'pracovna-doska', currency: 'EUR', value: 0 },
@@ -173,7 +175,7 @@ export default async function handler(req, res) {
         verify = await r.json();
       } catch { botSuspect = 'turnstile-error'; } // outage/timeout → fail open
       if (verify) {
-        const okHost = !verify.hostname || verify.hostname === EXPECTED_HOSTNAME;
+        const okHost = !verify.hostname || ALLOWED_HOSTNAMES.includes(verify.hostname);
         const okAction = !verify.action || verify.action === EXPECTED_ACTION;
         if (!verify.success || !okHost || !okAction) return drop(res, 'turnstile-fail');
       }

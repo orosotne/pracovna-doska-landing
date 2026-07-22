@@ -1,4 +1,4 @@
-# pracovnadoska.orostone.sk — klasické vyhľadávače aj AI crawlery sú vítané.
+# oro-klient.orostone.sk — klasické vyhľadávače aj AI crawlery sú vítané.
 # /dakujeme zámerne NEblokujeme cez Disallow: stránka nesie meta noindex
 # a crawler ho uvidí len vtedy, keď ju smie načítať.
 
@@ -33,4 +33,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://pracovnadoska.orostone.sk/sitemap.xml
+Sitemap: https://oro-klient.orostone.sk/sitemap.xml

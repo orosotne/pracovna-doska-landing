@@ -2,7 +2,7 @@
 
 > Orostone (Orostone s.r.o., Bratislava) dodáva sinterovaný kameň pre kuchynské
 > pracovné dosky, ostrovčeky a zásteny na mieru na Slovensku. Na stránke
-> pracovnadoska.orostone.sk si zákazník za 60 sekúnd vyžiada orientačnú cenu
+> oro-klient.orostone.sk si zákazník za 60 sekúnd vyžiada orientačnú cenu
 > na mieru — nezáväzne, spravidla do 24 hodín. Showroom: renesančný kaštieľ,
 > Bošany. Telefón: +421 917 588 738.
 
@@ -23,7 +23,7 @@ Kľúčové fakty:
 
 ## Hlavné stránky
 
-- [Orientačná cena na mieru (konfigurátor)](https://pracovnadoska.orostone.sk/): 60-sekundový kvíz — typ aplikácie, dekor, termín + kontakt
+- [Orientačná cena na mieru (konfigurátor)](https://oro-klient.orostone.sk/): 60-sekundový kvíz — typ aplikácie, dekor, termín + kontakt
 - [Hlavný web Orostone](https://orostone.sk): dekory, materiál, e-shop
 - [Realizácie](https://orostone.sk/realizacie): fotografie skutočných dodaných kuchýň
 

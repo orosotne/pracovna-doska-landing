@@ -4,6 +4,14 @@
   "functions": {
     "api/lead.mjs": { "maxDuration": 30 }
   },
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "pracovnadoska.orostone.sk" }],
+      "destination": "https://oro-klient.orostone.sk/:path*",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
