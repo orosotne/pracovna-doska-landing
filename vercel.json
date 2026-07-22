@@ -6,6 +6,12 @@
   },
   "redirects": [
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "pracovnadoska.orostone.sk" }],
+      "destination": "https://oro-klient.orostone.sk/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "pracovnadoska.orostone.sk" }],
       "destination": "https://oro-klient.orostone.sk/:path*",
