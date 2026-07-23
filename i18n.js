@@ -279,6 +279,7 @@ var EN=[
   ['a','#in-email','placeholder','jane@email.com'],
   ['h','#f-email .msg','Please enter a valid email address.'],
   ['h','#f-phone label','Phone <span class="opt-tag">· recommended, you’ll get your estimate sooner</span>'],
+  ['t','#f-phone .hint','Just type the digits — we’ll add the spaces automatically. Works with +421 too.'],
   ['h','#f-phone .msg','Please check your phone number.'],
   ['h','#f-consent > span','I agree that Orostone may contact me about my project. No obligation, no spam.'],
   ['t','#leadForm button[type="submit"]','Get my price estimate '],

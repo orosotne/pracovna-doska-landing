@@ -1092,6 +1092,7 @@ section.block{padding-top:70px;padding-bottom:70px}
 .field input{font-family:inherit;font-size:16px;color:var(--light);background:rgba(249,249,247,.05);border:1px solid var(--line-soft);border-radius:11px;padding:14px 15px;transition:border-color .2s,background .2s}
 .field input::placeholder{color:var(--muted-2)} .field input:focus{outline:none;border-color:var(--gold);background:rgba(236,212,136,.06)}
 .field.bad input{border-color:var(--err)} .field .msg{font-size:11.5px;color:var(--err);display:none} .field.bad .msg{display:block}
+.field .hint{font-size:11.5px;color:var(--muted-2)} .field.bad .hint{display:none} /* trvalá nápoveda formátu; pri chybe ju nahradí .msg, nech pod polom nie sú dva riadky */
 .submit-err{font-size:12.5px;line-height:1.5;color:var(--err);text-align:center;margin-top:10px}
 .submit-err[hidden]{display:none}
 .submit-err a{color:var(--gold-soft)}
@@ -2024,7 +2025,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden"><label>Toto pole nevypĺňajte<input id="os_hp" name="os_ref_2" type="text" tabindex="-1" autocomplete="off"></label></div>
           <div class="field" id="f-name"><label for="in-name">Meno</label><input id="in-name" type="text" autocomplete="name" placeholder="Napr. Jana Nováková" aria-describedby="msg-name"><span class="msg" id="msg-name">Prosím, vyplňte meno.</span></div>
           <div class="field" id="f-email"><label for="in-email">E-mail</label><input id="in-email" type="email" inputmode="email" autocomplete="email" placeholder="jana@email.sk" aria-describedby="msg-email"><span class="msg" id="msg-email">Zadajte platný e-mail.</span></div>
-          <div class="field" id="f-phone"><label for="in-phone">Telefón <span class="opt-tag">· odporúčané, zrýchli prípravu ceny</span></label><input id="in-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0917 123 456" aria-describedby="msg-phone"><span class="msg" id="msg-phone">Skontrolujte telefónne číslo.</span></div>
+          <div class="field" id="f-phone"><label for="in-phone">Telefón <span class="opt-tag">· odporúčané, zrýchli prípravu ceny</span></label><input id="in-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0917 123 456" aria-describedby="hint-phone msg-phone"><span class="hint" id="hint-phone">Stačí zadať číslice, medzery doplníme automaticky. Funguje aj s predvoľbou +421.</span><span class="msg" id="msg-phone">Skontrolujte telefónne číslo.</span></div>
           <label class="consent" id="f-consent"><input type="checkbox" id="in-consent"><span>Súhlasím, aby ma Orostone kontaktoval ohľadom môjho projektu. Nezáväzné, žiadny spam.</span></label>
           <div id="ts-slot" style="margin:4px 0 2px"></div>
           <button type="submit" class="cta block" style="margin-top:4px">Chcem orientačnú cenu
@@ -2129,6 +2130,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var d=v.replace(/\D/g,'');
     if(/^(\d)\1+$/.test(d))return false;
     return d.length>=9&&d.length<=14;}
+  /* Auto-formát telefónu počas písania: 0917 588 738, resp. +421 917 588 738 — v skupinách
+     vidno chýbajúcu číslicu na prvý pohľad. Len vizuál: phoneOk() aj server /api/lead
+     nečíslice stripujú. Kurzor sa prepočítava cez počet číslic pred ním, inak by pri
+     každom doplnení medzery skočil na koniec. */
+  function fmtPhone(v){
+    var plus=v.charAt(0)==='+', d=v.replace(/\D/g,'').slice(0,14), g=[];
+    if(plus){g.push('+'+d.slice(0,3));d=d.slice(3);}
+    else if(d.charAt(0)==='0'){g.push(d.slice(0,4));d=d.slice(4);}
+    while(d.length){g.push(d.slice(0,3));d=d.slice(3);}
+    return g.join(' ');
+  }
+  elP.addEventListener('input',function(){
+    var v=elP.value, pos=elP.selectionStart==null?v.length:elP.selectionStart;
+    var sig=(v.slice(0,pos).match(/[+0-9]/g)||[]).length;
+    var f=fmtPhone(v); if(f===v)return;
+    var np=0,c=0; while(np<f.length&&c<sig){if(/[+0-9]/.test(f.charAt(np)))c++;np++;}
+    elP.value=f; try{elP.setSelectionRange(np,np)}catch(e){}
+  });
   function bad(id,v){var f=document.getElementById(id);f.classList.toggle('bad',v);
     var inp=f.querySelector('input');if(inp)inp.setAttribute('aria-invalid',v?'true':'false');}
   var sending=false;
