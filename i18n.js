@@ -38,7 +38,7 @@ var EN=[
     'We’ll usually get back to you by the next business day with a no-obligation price estimate, a decor recommendation and advice on what will work best in your kitchen.',
     'We work with sintered stone, sometimes sold as porcelain or ceramic stone, a material that resists heat, stains and scratches, and never needs sealing.'
   ]],
-  ['t','button.cta[data-open-quiz]:not(.lb-cta)','Get my price estimate '],
+  ['t','button.cta[data-open-quiz]:not(.lb-cta):not(.dk-cta)','Get my price estimate '],
   ['h','.rating > span:not(.stars)','<b>5.0</b> <small>· 5 reviews on Google</small>'],
   ['t','.hu-item',['Durable surface','No sealing needed']],
   ['a','.material-card','aria-label','Super White Extra — get a price estimate'],
@@ -86,6 +86,31 @@ var EN=[
   ['h','.gal-trust span',[
     'Fabricated and fitted by experienced stonemasons',
     'Showroom in a manor house in Bošany']],
+
+  /* ===== index: Dekory (#dekory) — poradie polí = poradie platní v DOM ===== */
+  ['h','#dekory .section-head .eyebrow','Decors'],
+  ['h','#dekory .section-head h2','See the decors on a <span class="hl">full slab</span>'],
+  ['h','#dekory .section-head p','With a worktop, what decides it is how the veining reads across a large surface, not a small cut-out on a sample. So here you see whole slabs. Click any one of them to see where it works best.'],
+  ['h','#dekory .dk-cap small',[
+    'Pure white','Soft white','White marble','White marble','Delicate marble','Cream marble',
+    'Warm travertine','Grey stone','Warm gold','Bold dark','Dark gold','Black marble']],
+  ['h','#dekory .dk-desc',[
+    '<b>Super White Extra</b> — No veining at all, so the surface reads as a single continuous tone. A calm backdrop for a minimalist kitchen where the room comes first.',
+    '<b>Yabo White</b> — A warm cream undertone with a texture you only notice up close. On a worktop or splashback the matt finish feels softer than a cold white.',
+    '<b>Statuario Diamante</b> — Silver-grey veins drawn calmly, the contrast coming from pattern rather than colour. In a light kitchen it works with white or timber fronts.',
+    '<b>Calacatta Top</b> — A gloss finish gives the warm gold-brown veins depth, and they read differently as the light changes. For a kitchen where the worktop dominates.',
+    '<b>Appennino</b> — A dense web of fine gold-beige veins that reads calm from a distance. For a kitchen where the surface should bring light, not attention.',
+    '<b>Taj Mahal</b> — Soft golden veins drift slowly across the surface, with no hard contrast. A warm choice beside timber fronts and brass fittings.',
+    '<b>Roman Travertine</b> — A layered pattern with subtle relief and a matt surface that feels soft. It takes a worktop with a hob set in, and sits well with pale wood.',
+    '<b>Astrana Grey</b> — Gentle shifts in tone and discreet lighter veins, with no hard contrast. It suits oak and matt black, and an open-plan kitchen stays unbroken.',
+    '<b>Givenchy Gold</b> — A beige-brown field crossed by gold-ochre lines. On a worktop or island the pattern carries the room alone, so keep everything else simple.',
+    '<b>Wild Forest</b> — Grey-brown earth tones and an irregular pattern like stone surfaces in a forest. An island shows it best, with oak and greenery around it.',
+    '<b>Gothic Gold</b> — Under spotlights the gold veins on a dark ground stand out, and they settle when the lighting is low. On an island it gives a kitchen its centre.',
+    '<b>Nero Margiua</b> — Deep black that silver-white veins only quietly break up. The matt finish holds that depth and contrasts with pale fronts and gold details.']],
+  ['t','.dk-cta','Get a price for this decor '],
+  ['h','.dk-note span',[
+    'Sintered stone decors',
+    'See them in person at our showroom in the manor house in Bošany']],
 
   /* ===== index: Výhody ===== */
   ['h','.benefits-section .section-head .eyebrow','Why sintered stone'],
@@ -255,11 +280,11 @@ var EN=[
   ['h','.qstep[data-step="2"] .q','Which look are you drawn to?'],
   ['h','.qstep[data-step="2"] .q-sub','Nothing binding, it just gives us a sense of your taste.'],
   ['h','.decor .cap small',[
-    'Pure white','Soft white','White marble','White marble','Dramatic marble','Cream marble',
+    'Pure white','Soft white','White marble','White marble','Delicate marble','Cream marble',
     'Warm travertine','Grey stone','Warm gold','Bold dark','Dark gold','Black marble']],
   ['a','.decor img','alt',[
     'Super White Extra — pure white','Yabo White — soft white','Statuario Diamante — white marble',
-    'Calacatta Top — white marble','Appennino — dramatic marble','Taj Mahal — cream marble',
+    'Calacatta Top — white marble','Appennino — delicate marble','Taj Mahal — cream marble',
     'Roman Travertine — warm travertine','Astrana Grey — grey stone','Givenchy Gold — warm gold',
     'Wild Forest — bold dark','Gothic Gold — dark gold','Nero Margiua — black marble']],
   ['h','.decor.wide .tx b','I can’t decide, help me choose'],

@@ -8,3 +8,6 @@ COPY-AUDIT-*.md
 RESEARCH-*.md
 email/
 PPC-BRIEF-*
+
+# lokálny náhľad (Claude Code / preview) — nepatrí do verejného repa
+.claude/

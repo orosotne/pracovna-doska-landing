@@ -566,6 +566,64 @@ section.block{padding-top:70px;padding-bottom:70px}
    „prilepiť" k správnemu riadku); pri zalomení ju radšej skryjeme a frázy
    necháme stáť jednoducho pod sebou */
 @media(max-width:640px){.gal-trust{gap:6px 0}.gt-dot{display:none}}
+
+/* ===== DEKORY — akordeón platní (#dekory) =====
+   Fotky platní sú na výšku (800×1433). Riadok má PEVNÚ výšku, takže object-fit:cover
+   škáluje obrázok vždy rovnako (podľa výšky) — zmena šírky karty len odkrýva viac
+   alebo menej z tej istej platne, obrázok sa nepreškáluje ani neprepočíta.
+   Otvorená karta drží presný pomer platne (800/1433 = .558), ostatné sa stlačia na
+   zvislé lišty a delia si zvyšok riadku cez flex-grow.
+   POZOR: `[data-reveal-group] > *` prebíja transition na priamych deťoch → reveal
+   visí na obale .dk-railwrap, nikdy nie na .dk-rail (inak zmrzne animácia šírky). */
+.dk-rail{--dk-h:clamp(320px,38vw,480px);display:flex;gap:10px;height:var(--dk-h)}
+.dk-slab{position:relative;flex:1 1 0;min-width:0;height:100%;padding:0;overflow:hidden;cursor:pointer;
+  border:1px solid var(--line-soft);border-radius:12px;background:var(--stone-850);
+  font-family:inherit;color:var(--light);text-align:left;-webkit-appearance:none;appearance:none;
+  transition:flex-grow .75s var(--ease),flex-basis .75s var(--ease),border-color .3s var(--ease)}
+.dk-slab img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.dk-slab:hover{border-color:var(--gold-dim)}
+.dk-slab:not(.on):hover,.dk-slab:not(.on):focus-visible{flex-grow:2.4}
+.dk-slab:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.dk-slab.on{flex:0 0 calc(var(--dk-h) * .558);border-color:var(--gold);cursor:default}
+/* zvislý názov na stlačenej lište — na otvorenej karte ho vystrieda vodorovný popis */
+.dk-edge{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:16px 0;
+  background:linear-gradient(0deg,rgba(19,19,18,.88),rgba(19,19,18,.1) 46%,transparent 72%);
+  pointer-events:none;transition:opacity .3s var(--ease)}
+.dk-edge span{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;
+  font-size:11.5px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(249,249,247,.92)}
+.dk-slab.on .dk-edge{opacity:0}
+.dk-cap{position:absolute;left:0;right:0;bottom:0;padding:46px 15px 14px;pointer-events:none;
+  background:linear-gradient(0deg,rgba(19,19,18,.93),transparent);
+  opacity:0;transition:opacity .35s var(--ease) .2s}
+.dk-slab.on .dk-cap{opacity:1}
+.dk-cap small{display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft)}
+.dk-cap b{display:block;margin-top:3px;font-size:clamp(14px,1.42vw,18px);font-weight:600;letter-spacing:.01em;white-space:nowrap}
+/* popis + CTA pod riadkom — všetkých 12 variantov leží na sebe v gride (žiadny skok
+   výšky pri prepnutí), viditeľný je vždy jeden a prelína sa */
+.dk-panel{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:18px 34px;margin-top:26px}
+.dk-descs{display:grid;flex:1 1 340px;min-width:0}
+.dk-desc{grid-area:1/1;margin:0;max-width:46em;font-size:15px;line-height:1.62;color:var(--muted);
+  opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility .35s}
+.dk-desc.on{opacity:1;visibility:visible}
+.dk-desc b{color:var(--light);font-weight:600}
+.dk-cta{flex:0 0 auto}
+.dk-note{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 14px;margin-top:30px;
+  font-size:13px;color:var(--muted-2);text-align:center}
+@media(max-width:640px){.dk-note{gap:6px 0}.dk-note .gt-dot{display:none}}
+/* pod 900 px sú lišty pritenké na prst → vodorovný rail s celými platňami */
+@media(max-width:899px){
+  .dk-rail{height:auto;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
+  .dk-rail::-webkit-scrollbar{display:none}
+  .dk-slab{flex:0 0 clamp(150px,42vw,196px);height:auto;aspect-ratio:800/1433;scroll-snap-align:start}
+  .dk-slab.on{flex:0 0 clamp(150px,42vw,196px)}
+  .dk-edge{display:none}
+  .dk-cap{opacity:1;padding:40px 12px 12px}
+  .dk-cap b{font-size:15px;line-height:1.25;white-space:normal}
+  .dk-cap small{font-size:9.5px;letter-spacing:.12em}
+  .dk-panel{margin-top:22px}
+  .dk-cta{width:100%}
+}
 .lbx{position:fixed;inset:0;z-index:70;background:var(--stone-950);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:64px 16px 18px;opacity:0;visibility:hidden;transition:opacity .32s var(--ease),visibility .32s}
 .lbx.open{opacity:1;visibility:visible}
 .lb-fig{margin:0;display:flex;flex-direction:column;align-items:center;gap:14px;max-width:min(1200px,94vw)}
@@ -1410,6 +1468,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- DEKORY — platne na výber (kliknutím sa platňa rozvinie; JS nižšie, štýly v <style>) -->
+<section class="block" id="dekory">
+  <div class="wrap">
+    <div class="section-head" data-reveal-group>
+      <span class="eyebrow">Dekory na výber</span>
+      <h2>Dekory si pozrite <span class="hl">na celej platni</span></h2>
+      <p>Pri pracovnej doske rozhoduje kresba vo veľkej ploche, nie malý výrez na vzorke. Preto tu vidíte celé platne. Kliknite na ktorúkoľvek a dozviete sa, kam sa hodí.</p>
+    </div>
+    <div class="dk-railwrap" data-reveal>
+      <div class="dk-rail" id="dkRail">
+        <button type="button" class="dk-slab on" data-dekor="Super White Extra — Čistá biela" aria-pressed="true"><img src="img/decor/super-white-extra.webp" srcset="img/decor/sm/super-white-extra.webp 400w, img/decor/super-white-extra.webp 800w" sizes="(min-width:900px) 280px, 200px" alt="" width="800" height="1433" decoding="async"><span class="dk-edge" aria-hidden="true"><span>Super White Extra</span></span><span class="dk-cap"><small>Čistá biela</small><b>Super White Extra</b></span></button>
+        <button type="button" class="dk-slab" data-dekor="Yabo White — Jemná biela" aria-pressed="false"><img src="img/decor/yabo-white.webp" srcset="img/decor/sm/yabo-white.webp 400w, img/decor/yabo-white.webp 800w" sizes="(min-width:900px) 280px, 200px" alt="" width="800" height="1433" decoding="async"><span class="dk-edge" aria-hidden="true"><span>Yabo White</span></span><span class="dk-cap"><small>Jemná biela</small><b>Yabo White</b></span></button>
+        <button type="button" class="dk-slab" data-dekor="Statuario Diamante — Biely mramor" aria-pressed="false"><img src="img/decor/statuario-diamante.webp" srcset="img/decor/sm/statuario-diamante.webp 400w, img/decor/statuario-diamante.webp 800w" sizes="(min-width:900px) 280px, 200px" alt="" width="800" height="1433" loading="lazy" decoding="async"><span class="dk-edge" aria-hidden="true"><span>Statuario Diamante</span></span><span class="dk-cap"><small>Biely mramor</small><b>Statuario Diamante</b></span></button>
+        <button type="button" class="dk-slab" data-dekor="Calacatta Top — Biely mramor" aria-pressed="false"><img src="img/decor/calacatta-top.webp" srcset="img/decor/sm/calacatta-top.webp 400w, img/decor/calacatta-top.webp 800w" sizes="(min-width:900px) 280px, 200px" alt="" width="800" height="1433" loading="lazy" decoding="async"><span class="dk-edge" aria-hidden="true"><span>Calacatta Top</span></span><span class="dk-cap"><small>Biely mramor</small><b>Calacatta Top</b></span></button>
+        <button type="button" class="dk-slab" data-dekor="Appennino — Jemný mramor" aria-pressed="false"><img src="img/decor/appennino.webp" srcset="img/decor/sm/appennino.webp 400w, img/decor/appennino.webp 800w" sizes="(min-width:900px) 280px, 200px" alt="" width="800" height="1433" loading="lazy" decoding="async"><span class="dk-edge" aria-hidden="true"><span>Appennino</span></span><span class="dk-cap"><small>Jemný mramor</small><b>Appennino</b></span></button>
+        <button type="button" class="dk-slab" data-dekor="Taj Mahal — Krémový mramor" aria-pressed="false"><img src="img/decor/taj-mahal.webp" srcset="img/decor/sm/taj-mahal.webp 400w, img/decor/taj-mahal.webp 800w" sizes="(min-width:900px) 280px, 200px" alt="" width="800" height="1433" loading="lazy" decoding="async"><span class="dk-edge" aria-hidden="true"><span>Taj Mahal</span></span><span class="dk-cap"><small>Krémový mramor</small><b>Taj Mahal</b></span></button>
+        <button type="button" class="dk-slab" data-dekor="Roman Travertine — Teplý travertín" aria-pressed="false"><img src="img/decor/roman-travertine.webp" srcset="img/decor/sm/roman-travertine.webp 400w, img/decor/roman-travertine.webp 800w" sizes="(min-width:900px) 280px, 200px" alt="" width="800" height="1433" loading="lazy" decoding="async"><span class="dk-edge" aria-hidden="true"><span>Roman Travertine</span></span><span class="dk-cap"><small>Teplý travertín</small><b>Roman Travertine</b></span></button>
+        <button type="button" class="dk-slab" data-dekor="Astrana Grey — Sivý kameň" aria-pressed="false"><img src="img/decor/astrana-grey.webp" srcset="img/decor/sm/astrana-grey.webp 400w, img/decor/astrana-grey.webp 800w" sizes="(min-width:900px) 280px, 200px" alt="" width="800" height="1433" loading="lazy" decoding="async"><span class="dk-edge" aria-hidden="true"><span>Astrana Grey</span></span><span class="dk-cap"><small>Sivý kameň</small><b>Astrana Grey</b></span></button>
+        <button type="button" class="dk-slab" data-dekor="Givenchy Gold — Teplý zlatý" aria-pressed="false"><img src="img/decor/givenchy-gold.webp" srcset="img/decor/sm/givenchy-gold.webp 400w, img/decor/givenchy-gold.webp 800w" sizes="(min-width:900px) 280px, 200px" alt="" width="800" height="1433" loading="lazy" decoding="async"><span class="dk-edge" aria-hidden="true"><span>Givenchy Gold</span></span><span class="dk-cap"><small>Teplý zlatý</small><b>Givenchy Gold</b></span></button>
+        <button type="button" class="dk-slab" data-dekor="Wild Forest — Výrazný tmavý" aria-pressed="false"><img src="img/decor/wild-forest.webp" srcset="img/decor/sm/wild-forest.webp 400w, img/decor/wild-forest.webp 800w" sizes="(min-width:900px) 280px, 200px" alt="" width="800" height="1433" loading="lazy" decoding="async"><span class="dk-edge" aria-hidden="true"><span>Wild Forest</span></span><span class="dk-cap"><small>Výrazný tmavý</small><b>Wild Forest</b></span></button>
+        <button type="button" class="dk-slab" data-dekor="Gothic Gold — Tmavý zlatý" aria-pressed="false"><img src="img/decor/gothic-gold.webp" srcset="img/decor/sm/gothic-gold.webp 400w, img/decor/gothic-gold.webp 800w" sizes="(min-width:900px) 280px, 200px" alt="" width="800" height="1433" loading="lazy" decoding="async"><span class="dk-edge" aria-hidden="true"><span>Gothic Gold</span></span><span class="dk-cap"><small>Tmavý zlatý</small><b>Gothic Gold</b></span></button>
+        <button type="button" class="dk-slab" data-dekor="Nero Margiua — Čierny mramor" aria-pressed="false"><img src="img/decor/nero-margiua.webp" srcset="img/decor/sm/nero-margiua.webp 400w, img/decor/nero-margiua.webp 800w" sizes="(min-width:900px) 280px, 200px" alt="" width="800" height="1433" loading="lazy" decoding="async"><span class="dk-edge" aria-hidden="true"><span>Nero Margiua</span></span><span class="dk-cap"><small>Čierny mramor</small><b>Nero Margiua</b></span></button>
+      </div>
+      <div class="dk-panel">
+        <div class="dk-descs" aria-live="polite">
+          <p class="dk-desc on"><b>Super White Extra</b> — Bez žilkovania, takže plocha pôsobí ako jeden súvislý tón. Pokojné pozadie do minimalistickej kuchyne, kde má vyniknúť celok.</p>
+          <p class="dk-desc"><b>Yabo White</b> — Teplý krémový podtón s textúrou, ktorú vidno až zblízka. Matný povrch na kuchynskú dosku aj zástenu pôsobí mäkšie než studená biela.</p>
+          <p class="dk-desc"><b>Statuario Diamante</b> — Strieborno-sivé žilky vedené pokojne; kontrast tu tvorí kresba, nie farba. Vo svetlej kuchyni funguje s bielymi aj drevenými frontmi.</p>
+          <p class="dk-desc"><b>Calacatta Top</b> — Lesklý povrch dáva teplým zlatohnedým žilkám hĺbku a ich vyznenie sa mení so svetlom. Doska pre kuchyňu, kde má byť dominantou.</p>
+          <p class="dk-desc"><b>Appennino</b> — Hustá sieť jemných zlatobéžových žiliek, ktorá z odstupu pôsobí pokojne. Do kuchyne, kde má plocha priniesť svetlo a nie pozornosť.</p>
+          <p class="dk-desc"><b>Taj Mahal</b> — Mäkké zlatisté žilkovanie sa po ploche rozbieha pomaly, bez ostrých kontrastov. Teplá voľba k dreveným frontom a mosadzným detailom.</p>
+          <p class="dk-desc"><b>Roman Travertine</b> — Vrstvená kresba s jemným reliéfom a matným povrchom, mäkkým na dotyk. Hodí sa aj na dosku so vstavaným varičom a ladí so svetlým drevom.</p>
+          <p class="dk-desc"><b>Astrana Grey</b> — Žiadne ostré kontrasty, len jemné prechody odtieňov a svetlejšie žilky. Sadne k dubu aj matnej čiernej a v otvorenej kuchyni nerobí zlom.</p>
+          <p class="dk-desc"><b>Givenchy Gold</b> — Béžovo-hnedé pole, cez ktoré prechádzajú zlato-okrové línie. Na doske aj ostrovčeku nesie kresba priestor sama, okolie nechajte jednoduchšie.</p>
+          <p class="dk-desc"><b>Wild Forest</b> — Sivohnedé zemité tóny a nepravidelná kresba, ktorá pripomína kamenné plochy v lese. Na ostrovčeku vynikne najviac, dopĺňa ho dub a zeleň.</p>
+          <p class="dk-desc"><b>Gothic Gold</b> — Pod bodovým svetlom zlatisté žilky na tmavom podklade vystúpia, pri tlmenom sa plocha upokojí. Na ostrovčeku dá kuchyni jasný stred.</p>
+          <p class="dk-desc"><b>Nero Margiua</b> — Sýta čierna, ktorú strieborno-biele žilky len ticho rozbíjajú. Matný povrch drží hĺbku a tvorí kontrast k svetlým frontom aj zlatým detailom.</p>
+        </div>
+        <button class="cta dk-cta" id="dkCta" data-open-quiz data-dekor="Super White Extra — Čistá biela">Chcem cenu s týmto dekorom
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+      </div>
+    </div>
+    <div class="dk-note" data-reveal="fade">
+      <span>Dekory zo sinterovaného kameňa</span>
+      <i class="gt-dot" aria-hidden="true"></i>
+      <span>Naživo ich uvidíte v showroome v kaštieli v Bošanoch</span>
+    </div>
+  </div>
+</section>
+
 <!-- VÝHODY KAMEŇA -->
 <section class="benefits-section block" style="padding-bottom:0">
   <div class="wrap">
@@ -2002,7 +2110,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button class="decor" data-val="Yabo White — Jemná biela"><span class="badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span><img src="img/decor/yabo-white.webp" alt="Yabo White — Jemná biela" loading="lazy" width="800" height="1433"><span class="cap"><b>Yabo White</b><small>Jemná biela</small></span></button>
           <button class="decor" data-val="Statuario Diamante — Biely mramor"><span class="badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span><img src="img/decor/statuario-diamante.webp" alt="Statuario Diamante — Biely mramor" loading="lazy" width="800" height="1433"><span class="cap"><b>Statuario Diamante</b><small>Biely mramor</small></span></button>
           <button class="decor" data-val="Calacatta Top — Biely mramor"><span class="badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span><img src="img/decor/calacatta-top.webp" alt="Calacatta Top — Biely mramor" loading="lazy" width="800" height="1433"><span class="cap"><b>Calacatta Top</b><small>Biely mramor</small></span></button>
-          <button class="decor" data-val="Appennino — Dynamický mramor"><span class="badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span><img src="img/decor/appennino.webp" alt="Appennino — Dynamický mramor" loading="lazy" width="800" height="1433"><span class="cap"><b>Appennino</b><small>Dynamický mramor</small></span></button>
+          <button class="decor" data-val="Appennino — Jemný mramor"><span class="badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span><img src="img/decor/appennino.webp" alt="Appennino — Jemný mramor" loading="lazy" width="800" height="1433"><span class="cap"><b>Appennino</b><small>Jemný mramor</small></span></button>
           <button class="decor" data-val="Taj Mahal — Krémový mramor"><span class="badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span><img src="img/decor/taj-mahal.webp" alt="Taj Mahal — Krémový mramor" loading="lazy" width="800" height="1433"><span class="cap"><b>Taj Mahal</b><small>Krémový mramor</small></span></button>
           <button class="decor" data-val="Roman Travertine — Teplý travertín"><span class="badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span><img src="img/decor/roman-travertine.webp" alt="Roman Travertine — Teplý travertín" loading="lazy" width="800" height="1433"><span class="cap"><b>Roman Travertine</b><small>Teplý travertín</small></span></button>
           <button class="decor" data-val="Astrana Grey — Sivý kameň"><span class="badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span><img src="img/decor/astrana-grey.webp" alt="Astrana Grey — Sivý kameň" loading="lazy" width="800" height="1433"><span class="cap"><b>Astrana Grey</b><small>Sivý kameň</small></span></button>
@@ -2077,10 +2185,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var a=document.querySelector('.qstep.active'), f=a&&a.querySelector('button,input:not(#os_hp)'); if(f){try{f.focus({preventScroll:true})}catch(e){}}
   }
   function goTo(n){state.step=Math.max(1,Math.min(TOTAL,n));render()}
-  function openQuiz(){lastFocused=document.activeElement;overlay.classList.add('open');document.body.style.overflow='hidden';if(!state.started){state.started=true;analytics('lead_form_start')}render();}
+  /* dekor vybraný v galérii na stránke (#dekory) → predvyberie krok 2.
+     Páruje sa presne cez data-val, takže hodnoty v CRM ostávajú nezmenené. */
+  function preselectDekor(val){
+    var g=document.querySelector('.decors'); if(!g)return;
+    var btn=null;
+    g.querySelectorAll('.decor').forEach(function(b){if(b.dataset.val===val)btn=b});
+    if(!btn)return;
+    g.querySelectorAll('.decor').forEach(function(b){b.classList.remove('sel')});
+    btn.classList.add('sel'); state.answers.dekor=val;
+  }
+  function openQuiz(dekor){lastFocused=document.activeElement;if(dekor)preselectDekor(dekor);overlay.classList.add('open');document.body.style.overflow='hidden';if(!state.started){state.started=true;analytics('lead_form_start')}render();}
   function closeQuiz(){overlay.classList.remove('open');document.body.style.overflow='';if(lastFocused&&lastFocused.focus){try{lastFocused.focus()}catch(e){}}}
 
-  document.querySelectorAll('[data-open-quiz]').forEach(function(b){b.addEventListener('click',openQuiz)});
+  document.querySelectorAll('[data-open-quiz]').forEach(function(b){b.addEventListener('click',function(){openQuiz(b.getAttribute('data-dekor'))})});
   document.getElementById('qclose').addEventListener('click',closeQuiz);
   document.addEventListener('keydown',function(e){
     if(!overlay.classList.contains('open'))return;
@@ -2298,6 +2416,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   /* poistka: keby IO na niektorom zariadení nezareagoval, po 3 s odhaľ všetko
      → obsah nikdy neostane skrytý (progressive enhancement) */
   setTimeout(revealAll,3000);
+})();
+</script>
+
+<!-- DEKORY (#dekory) — otvorenie platne + prepnutie popisu a dekoru na CTA.
+     Bez JS ostáva otvorená prvá platňa a jej popis (stav je už v HTML). -->
+<script>
+(function(){
+  var rail=document.getElementById('dkRail'); if(!rail)return;
+  var slabs=[].slice.call(rail.querySelectorAll('.dk-slab'));
+  var descs=[].slice.call(document.querySelectorAll('#dekory .dk-desc'));
+  var cta=document.getElementById('dkCta');
+  if(slabs.length<2)return;
+
+  function select(i,fromUser){
+    slabs.forEach(function(s,k){var on=k===i;s.classList.toggle('on',on);s.setAttribute('aria-pressed',on?'true':'false')});
+    descs.forEach(function(p,k){p.classList.toggle('on',k===i)});
+    /* CTA otvorí kvíz s týmto dekorom predvyplneným v kroku 2 */
+    if(cta)cta.setAttribute('data-dekor',slabs[i].getAttribute('data-dekor')||'');
+    if(fromUser){window.dataLayer=window.dataLayer||[];
+      window.dataLayer.push({event:'decor_view',dekor:slabs[i].getAttribute('data-dekor')||''});}
+  }
+
+  slabs.forEach(function(s,i){s.addEventListener('click',function(){select(i,true)})});
+  /* šípkami sa dá prejsť dekormi bez myši */
+  rail.addEventListener('keydown',function(e){
+    var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0; if(!d)return;
+    var cur=slabs.indexOf(document.activeElement); if(cur<0)return;
+    e.preventDefault();
+    var n=(cur+d+slabs.length)%slabs.length;
+    slabs[n].focus({preventScroll:false}); select(n,true);
+  });
+  select(0,false);
 })();
 </script>
 
