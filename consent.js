@@ -105,6 +105,13 @@ window.OS_LANG=(function(){
       '#os-cookiebar .cb-no{background:transparent;color:#F9F9F7;border:1px solid rgba(249,249,247,.35)}'+
       '@media(max-width:560px){#os-cookiebar .cb-btns{flex:1 1 100%}'+
         '#os-cookiebar button{flex:1;padding:14px 10px}}'+
+      /* Na 320 px ponecháme celé znenie, ale zmenšíme vertikálnu stopu lišty,
+         aby neprekrývala hlavné CTA v hero. Šírky od 360 px ostávajú bez zmeny. */
+      '@media(max-width:340px){#os-cookiebar{padding:12px 14px calc(12px + env(safe-area-inset-bottom,0px))}'+
+        '#os-cookiebar .cb-in{gap:10px}'+
+        '#os-cookiebar p{flex-basis:100%;font-size:11.5px;line-height:1.35}'+
+        '#os-cookiebar .cb-btns{gap:8px}'+
+        '#os-cookiebar button{font-size:10px;letter-spacing:.08em;border-radius:8px;padding:10px 8px}}'+
       '</style>'+
       '<div class="cb-in">'+
         (window.OS_LANG==='en'
