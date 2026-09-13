@@ -95,7 +95,7 @@ var EN=[
     'Pure white','Soft white','White marble','White marble','Delicate marble','Cream marble',
     'Warm travertine','Grey stone','Warm gold','Bold dark','Dark gold','Black marble']],
   ['h','#dekory .dk-desc',[
-    '<b>Super White Extra</b> — No veining at all, so the surface reads as a single continuous tone. A calm backdrop for a minimalist kitchen where the room comes first.',
+    '<b>Super White Extra</b> — A light base threaded with grey veins, some fine, some bolder. For a kitchen where the surface should stay light but keep its marble character.',
     '<b>Yabo White</b> — A warm cream undertone with a texture you only notice up close. On a worktop or splashback the matt finish feels softer than a cold white.',
     '<b>Statuario Diamante</b> — Silver-grey veins drawn calmly, the contrast coming from pattern rather than colour. In a light kitchen it works with white or timber fronts.',
     '<b>Calacatta Top</b> — A gloss finish gives the warm gold-brown veins depth, and they read differently as the light changes. For a kitchen where the worktop dominates.',
