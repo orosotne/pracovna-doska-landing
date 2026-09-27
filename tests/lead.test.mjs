@@ -1,5 +1,6 @@
 import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 
 process.env.MAKE_WEBHOOK_URL = 'https://make.test/hook';
 process.env.PROXY_TOKEN = 'server-proxy-token';
@@ -273,4 +274,23 @@ test('Make is retried once and exhausted failures never log the PII payload', as
   assert.equal(logs.some((line) => line.includes('JANA@EXAMPLE.COM')), false);
   assert.equal(logs.some((line) => line.includes('0917 123 456')), false);
   assert.equal(logs.some((line) => line.includes('FORWARD-FAILED ref=')), true);
+});
+
+// 27. 9. 2026 prešiel formulárom „…@gmail..com“; Make naň nevie poslať potvrdenie
+// a celý scenár LP2 → CRM sa zastavil. Preklep musí zachytiť formulár, kým to
+// zákazník ešte vidí.
+test('form e-mail check rejects empty address labels like gmail..com', async () => {
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const literal = html.match(/var emailRe=\/(.+)\/([a-z]*);/);
+  assert.ok(literal, 'index.html must define emailRe as a regex literal');
+  const emailRe = new RegExp(literal[1], literal[2]);
+
+  for (const typo of ['silvuska.b@gmail..com', 'jana..novak@email.sk', '.jana@email.sk',
+    'jana.@email.sk', 'jana@.email.sk', 'jana@email.sk.']) {
+    assert.equal(emailRe.test(typo), false, typo);
+  }
+  for (const valid of ['jana@email.sk', 'jana.novakova@gmail.com', 'j.n+lp2@firma.co.uk',
+    'jana@moja-firma.sk', 'JANA@EXAMPLE.COM']) {
+    assert.equal(emailRe.test(valid), true, valid);
+  }
 });

@@ -285,6 +285,9 @@ function prepareLead(data) {
   if (!/\p{L}{2,}/u.test(clean.name)) return { error: 'name-gibberish' };
 
   clean.email = clean.email.toLowerCase();
+  // Deliberately looser than the form's emailRe (index.html): drop() answers {ok:true},
+  // so a stricter check here would silently discard a real lead sent from a page opened
+  // before a deploy. Typos like "gmail..com" are caught by the form, where the visitor sees them.
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(clean.email)) return { error: 'email-syntax' };
   const domain = clean.email.split('@')[1];
   if (DISPOSABLE.has(domain)) return { error: 'disposable-email' };

@@ -2248,7 +2248,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var OS_RENDER_TS=Date.now(); /* čas načítania stránky — server (/api/lead) odmietne odoslanie rýchlejšie než 3 s = bot */
   var form=document.getElementById('leadForm');
   var elN=document.getElementById('in-name'),elE=document.getElementById('in-email'),elP=document.getElementById('in-phone'),elC=document.getElementById('in-consent');
-  var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  /* bodka nie na začiatku, na konci ani dve za sebou („gmail..com“) — na takú adresu
+     potvrdenie neodíde. Server /api/lead je zámerne voľnejší (pozri komentár tam). */
+  var emailRe=/^[^\s@.]+(?:\.[^\s@.]+)*@[^\s@.]+(?:\.[^\s@.]+)*\.[^\s@.]{2,}$/;
   /* Telefón NEPOVINNÝ, ale ak je vyplnený, musí to byť reálne číslo: 9–14 číslic
      (SK 0917… = 10, medzinárodné +421…/české/rakúske až 14, EN verzia = cudzinci).
      Odmietne „00000" (málo číslic) aj „0000000000" (samé rovnaké). */
