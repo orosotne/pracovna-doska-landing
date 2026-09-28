@@ -433,6 +433,10 @@ export default async function handler(req, res) {
   if (prepared.error) return drop(res, prepared.error);
   const clean = prepared.value;
   clean.proxy_token = PROXY_TOKEN;
+  // IP pre CRM → Meta QualifiedLead (Make ju mapuje do /api/ingest-lead). Berie sa
+  // z hlavičky, ktorú Vercel prepisuje proti spoofingu, nikdy z tela formulára.
+  const ip = clientIp(req);
+  if (ip) clean.client_ip = ip;
 
   // Forward to Make with one retry. A failed forward must NOT pretend success:
   // the client shows an error + phone number on non-2xx, so the visitor knows to

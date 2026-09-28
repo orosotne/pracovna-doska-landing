@@ -118,6 +118,23 @@ test('valid lead is normalized and forwarded through the strict allowlist', asyn
   assert.equal('form_elapsed_ms' in forwarded, false);
 });
 
+// CRM posiela Mete QualifiedLead a IP návštevníka pozná len z tohto payloadu
+// (Make ju mapuje do /api/ingest-lead ako client_ip). Bez nej mala IP len 9 % eventov.
+test('forwards the server-observed visitor IP, never a client-supplied one', async () => {
+  const calls = [];
+  fetchImpl = async (url, options) => {
+    calls.push({ url: String(url), options });
+    return String(url).includes('siteverify') ? turnstileOk() : makeOk();
+  };
+
+  const response = await invoke(validLead({ client_ip: '198.51.100.7' }), { ip: '203.0.113.22' });
+
+  assert.equal(response.statusCode, 200);
+  assert.equal(calls.length, 2);
+  const forwarded = JSON.parse(calls[1].options.body);
+  assert.equal(forwarded.client_ip, '203.0.113.22');
+});
+
 test('missing Turnstile token returns a visible non-2xx and never forwards', async () => {
   let calls = 0;
   fetchImpl = async () => { calls += 1; return makeOk(); };
