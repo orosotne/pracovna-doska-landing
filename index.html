@@ -2199,6 +2199,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function closeQuiz(){overlay.classList.remove('open');document.body.style.overflow='';if(lastFocused&&lastFocused.focus){try{lastFocused.focus()}catch(e){}}}
 
   document.querySelectorAll('[data-open-quiz]').forEach(function(b){b.addEventListener('click',function(){openQuiz(b.getAttribute('data-dekor'))})});
+  /* ?od= nesú len tlačidlá „Orientačná cena" na orostone.sk — návštevník už klikol, kvíz sa otvorí hneď */
+  if(/[?&]od=/.test(location.search))openQuiz();
   document.getElementById('qclose').addEventListener('click',closeQuiz);
   document.addEventListener('keydown',function(e){
     if(!overlay.classList.contains('open'))return;
