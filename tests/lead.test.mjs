@@ -8,7 +8,7 @@ process.env.TURNSTILE_SECRET = 'turnstile-secret';
 process.env.LEAD_TEST_TOKEN = 'health-check-secret';
 process.env.CAPI_ACCESS_TOKEN = '';
 
-const { default: handler } = await import('../api/lead.mjs');
+const { default: handler, normalizeReferralCode } = await import('../api/lead.mjs');
 const originalFetch = globalThis.fetch;
 let fetchImpl = async () => { throw new Error('unexpected fetch'); };
 globalThis.fetch = (...args) => fetchImpl(...args);
@@ -310,4 +310,34 @@ test('form e-mail check rejects empty address labels like gmail..com', async () 
     'jana@moja-firma.sk', 'JANA@EXAMPLE.COM']) {
     assert.equal(emailRe.test(valid), true, valid);
   }
+});
+
+// Program Odporučte Orostone (26. 10. 2026): kód od známeho ide do Make → CRM
+// (lp2_store_answers, source_meta.kod). Je nepovinný, preto zlý tvar nesmie zahodiť lead.
+test('referral code is normalized and forwarded; an invalid one is dropped, the lead is not', async () => {
+  const forwarded = [];
+  fetchImpl = async (url, options) => {
+    if (String(url).includes('siteverify')) return turnstileOk();
+    forwarded.push(JSON.parse(options.body));
+    return makeOk();
+  };
+
+  const withCode = await invoke(validLead({ kod: ' jána 482 ' }), { ip: '203.0.113.31' });
+  const badCode = await invoke(validLead({ kod: 'JANA-48' }), { ip: '203.0.113.32' });
+  const noCode = await invoke(validLead(), { ip: '203.0.113.33' });
+
+  for (const response of [withCode, badCode, noCode]) assert.equal(response.statusCode, 200);
+  assert.equal(forwarded.length, 3);
+  assert.equal(forwarded[0].kod, 'JANA-482');
+  assert.equal('kod' in forwarded[1], false);
+  assert.equal('kod' in forwarded[2], false);
+});
+
+test('referral code rule matches the form (index.html normKod)', async () => {
+  for (const [input, expected] of [['JANA-482', 'JANA-482'], ['jana482', 'JANA-482'], ['Ľuboš 123', 'LUBOS-123'],
+    ['ORO-100', 'ORO-100'], ['J-482', ''], ['JANA-4821', ''], ['JANA_482', ''], ['', '']]) {
+    assert.equal(normalizeReferralCode(input), expected, input);
+  }
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  assert.match(html, /v\.match\(\/\^\(\[A-Z\]\{2,12\}\)-\?\(\\d\{3\}\)\$\/\)/, 'index.html normKod must use the same pattern');
 });
