@@ -73,6 +73,7 @@ const LEAD_TEXT_FIELDS = Object.freeze({
   landing_url:          { max: 2048 },
   referrer:             { max: 2048 },
   user_agent:           { max: 512 },
+  kod:                  { max: 40 },
 });
 
 const DISPOSABLE = new Set([
@@ -264,6 +265,14 @@ function cleanTextField(data, key, spec) {
   return { present: true, value };
 }
 
+// Kód od známeho (program Odporučte Orostone): „jána 482“ → „JANA-482“, iný tvar → ''.
+// Rovnaké pravidlo má formulár (index.html normKod) aj CRM.
+export function normalizeReferralCode(value) {
+  const v = String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().replace(/\s+/g, '');
+  const m = v.match(/^([A-Z]{2,12})-?(\d{3})$/);
+  return m ? `${m[1]}-${m[2]}` : '';
+}
+
 function validHttpUrl(value) {
   if (!value) return true;
   try {
@@ -295,6 +304,13 @@ function prepareLead(data) {
   // A project enquiry is valid only with the explicit contact consent sent by the form.
   if (data.consent_ads !== true && data.consent_ads !== 'true') return { error: 'contact-consent' };
   clean.consent_ads = 'true';
+
+  // Kód je nepovinný: neplatný tvar sa zahodí, lead nie.
+  if (clean.kod !== undefined) {
+    const kod = normalizeReferralCode(clean.kod);
+    if (kod) clean.kod = kod;
+    else delete clean.kod;
+  }
 
   if (!validHttpUrl(clean.landing_url)) return { error: 'landing-url' };
   if (!validHttpUrl(clean.referrer)) return { error: 'referrer-url' };

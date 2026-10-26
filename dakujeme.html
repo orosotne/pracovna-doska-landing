@@ -219,6 +219,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="eyebrow">Dopyt prijatý</span>
       <h1 id="ty-h">Ďakujeme — pripravujeme vašu cenu.</h1>
       <p>Ozveme sa vám spravidla do 24 hodín, aby sme doladili detaily a poslali orientačnú cenu na mieru.</p>
+      <p id="ty-kod" hidden></p>
       <ul class="next">
         <li><span class="n">1</span><span>Ozveme sa vám a doladíme rozmery, dekor a hrúbku.</span></li>
         <li><span class="n">2</span><span>Pripravíme <b>orientačnú cenu</b> a dohodneme bezplatné zameranie.</span></li>
@@ -265,6 +266,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   if(lead.name){var fn=(''+lead.name).trim().split(/\s+/)[0];
     var h=document.getElementById('ty-h'); if(fn&&h){h.dataset.fn=fn; /* meno si drží i18n.js pri prepínaní SK/EN */
       h.textContent=(window.OS_LANG==='en')?('Thank you, '+fn+' — we’re preparing your estimate.'):('Ďakujeme, '+fn+' — pripravujeme vašu cenu.');}}
+  /* kód od známeho (program Odporučte Orostone) */
+  if(lead.kod){var k=document.getElementById('ty-kod'); if(k){k.textContent=(window.OS_LANG==='en')
+    ?('We’ve noted the referral code '+lead.kod+'. If it’s valid, you’ll see €100 off the material price in your quote.')
+    :('Kód '+lead.kod+' sme zapísali. Ak platí, odpočet 100 € z ceny materiálu uvidíte v cenovej ponuke.'); k.hidden=false;}}
 })();
 </script>
 </body>
